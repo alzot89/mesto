@@ -1,4 +1,16 @@
 .header__logo {
     color: rgba(255, 255, 255, 1);
+}
 
+@media screen and (max-width: 881px) {
+    .header__logo {
+        margin-left: 27px;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .header__logo {
+        width: 104px;
+        height: 25px;
+    }
 }

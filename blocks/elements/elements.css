@@ -2,14 +2,24 @@
 @import url(./__image/elements__image.css);
 @import url(./__info/elements__info.css);
 @import url(./__title/elements__title.css);
-@import url(./__like/elements__like.css);
+@import url(./__list/elements__list.css);
 
 
 .elements {
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 282px);
     padding-top: 57px;
-    column-gap: 18px;
-    row-gap: 20px;
+    margin: 0 auto;
+}
+
+@media (min-width: 620px) and (max-width: 881px) {
+    .elements {
+        width: 582px;
+        padding-top: 36px;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .elements {
+        width: 282px;
+    }
 }

@@ -14,65 +14,81 @@
         <div class="header__line"></div>
     </header>
 
-    <section class="profile">
-        <img class="profile__avatar" src="./images/profile_avatar.jpg" alt="картинка: Жак-Ив Кусто">
-        <div class="profile__info">
-            <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <button class="button profile__edit-button">
-                <img src="./images/profile_edit-button.svg" alt="картинка: кнопка редактирования">
+    <main class="content">
+        <section class="profile">
+            <img class="profile__avatar" src="./images/profile_avatar.jpg" alt="картинка: Жак-Ив Кусто">
+            <div class="profile__info">
+                <h1 class="profile__title">Жак-Ив Кусто</h1>
+                <button class="button button_type_edit">
+                    <img src="./images/profile_edit-button.svg" alt="картинка: кнопка редактирования">
+                </button>
+                <p class="profile__subtitle">Исследователь океана</p>
+            </div>
+            <button class="button button_type_add">
+                <img src="./images/profile_add-button.svg" alt="картинка: кнопка добавления">
             </button>
-            <p class="profile__subtitle">Исследователь океана</p>
-        </div>
-        <button class="button profile__add-button">
-            <img src="./images/profile_add-button.svg" alt="картинка: кнопка добавления">
-        </button>
-    </section>
+        </section>
 
-    <section class="elements">
-        <div class="elements__card">
-            <img class="elements__image" src="./images/karachaevsk.png" alt="картинка: Карачаевск">
-            <div class="elements__info">
-                <h3 class="elements__title">Карачаевск</h3>
-                <img class="elements__like" src="./images/like.svg" alt="картинка: сердечко">
-            </div>
-        </div>
-        <div class="elements__card">
-            <img class="elements__image" src="./images/elbrus.png" alt="картинка: Эльбрус">
-            <div class="elements__info">
-                <h3 class="elements__title">Гора Эльбрус</h3>
-                <img class="elements__like" src="./images/like.svg" alt="картинка: сердечко">
-            </div>
-        </div>
-        <div class="elements__card">
-            <img class="elements__image" src="./images/dombay.png" alt="картинка: Домбай">
-            <div class="elements__info">
-                <h3 class="elements__title">Домбай</h3>
-                <img class="elements__like" src="./images/like.svg" alt="картинка: сердечко">
-            </div>
-        </div>
-        <div class="elements__card">
-            <img class="elements__image" src="./images/elbrus.png" alt="картинка: Эльбрус2">
-            <div class="elements__info">
-                <h3 class="elements__title">Гора Эльбрус</h3>
-                <img class="elements__like" src="./images/like.svg" alt="картинка: сердечко">
-            </div>
-        </div>
-        <div class="elements__card">
-            <img class="elements__image" src="./images/dombay.png" alt="картинка: Домбай2">
-            <div class="elements__info">
-                <h3 class="elements__title">Домбай</h3>
-                <img class="elements__like" src="./images/like.svg" alt="картинка: сердечко">
-            </div>
-        </div>
-        <div class="elements__card">
-            <img class="elements__image" src="./images/karachaevsk.png" alt="картинка: Карачаево-Черкесия">
-            <div class="elements__info">
-                <h3 class="elements__title">Карачаево-Черкесия</h3>
-                <img class="elements__like" src="./images/like.svg" alt="картинка: сердечко">
-            </div>
-        </div>
-    </section>
+        <section class="elements">
+            <ul class="elements__list">
+                <li class="elements__card">
+                    <img class="elements__image" src="./images/karachaevsk.png" alt="картинка: Карачаевск">
+                    <div class="elements__info">
+                        <h3 class="elements__title">Карачаевск</h3>
+                        <button class="button button_type_like">
+                            <img src="./images/like.svg" alt="картинка: сердечко">
+                        </button>
+                    </div>
+                </li>
+                <li class="elements__card">
+                    <img class="elements__image" src="./images/elbrus.png" alt="картинка: Эльбрус">
+                    <div class="elements__info">
+                        <h3 class="elements__title">Гора Эльбрус</h3>
+                        <button class="button button_type_like">
+                            <img class="elements__like" src="./images/like.svg" alt="картинка: сердечко">
+                        </button>
+                    </div>
+                </li>
+                <li class="elements__card">
+                    <img class="elements__image" src="./images/dombay.png" alt="картинка: Домбай">
+                    <div class="elements__info">
+                        <h3 class="elements__title">Домбай</h3>
+                        <button class="button button_type_like">
+                            <img class="elements__like" src="./images/like.svg" alt="картинка: сердечко">
+                        </button>
+                    </div>
+                </li>
+                <li class="elements__card">
+                    <img class="elements__image" src="./images/elbrus.png" alt="картинка: Эльбрус2">
+                    <div class="elements__info">
+                        <h3 class="elements__title">Гора Эльбрус</h3>
+                        <button class="button button_type_like">
+                            <img class="elements__like" src="./images/like.svg" alt="картинка: сердечко">
+                        </button>
+                    </div>
+                </li>
+                <li class="elements__card">
+                    <img class="elements__image" src="./images/dombay.png" alt="картинка: Домбай2">
+                    <div class="elements__info">
+                        <h3 class="elements__title">Домбай</h3>
+                        <button class="button button_type_like">
+                            <img class="elements__like" src="./images/like.svg" alt="картинка: сердечко">
+                        </button>
+                    </div>
+                </li>
+                <li class="elements__card">
+                    <img class="elements__image" src="./images/karachaevsk.png" alt="картинка: Карачаево-Черкесия">
+                    <div class="elements__info">
+                        <h3 class="elements__title">Карачаево-Черкесия</h3>
+                        <button class="button button_type_like">
+                            <img class="elements__like" src="./images/like.svg" alt="картинка: сердечко">
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </section>
 
+    </main>
 
     <footer class="footer">
         <p class="footer__copyright">&copy; 2020 Mesto Russia</p>

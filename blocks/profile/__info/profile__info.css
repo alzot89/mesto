@@ -3,3 +3,10 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+@media screen and (max-width: 525px) {
+    .profile__info {
+        justify-content: center;
+        margin-top: 14px;
+    }
+}

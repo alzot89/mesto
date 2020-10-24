@@ -3,7 +3,7 @@
 @import url(./__stripe/header__stripe.css);
 
 .header {
-    max-width: 100%;
+    width: 100%;
     padding-top: 45px;
     box-sizing: border-box;
 }

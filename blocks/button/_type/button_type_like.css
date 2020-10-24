@@ -1,6 +1,8 @@
-.elements__like{
+.button_type_like {
     width: 20px;
     height: 18px;
     margin-right: 3px;
     margin-top: 6px;
+    color: #000000;
+    background-color: #ffffff;
 }

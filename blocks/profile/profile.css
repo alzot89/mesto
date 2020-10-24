@@ -2,8 +2,6 @@
 @import url(./__info/profile__info.css);
 @import url(./__title/profile__title.css);
 @import url(./__subtitle/profile__subtitle.css);
-@import url(./__edit-button/profile__edit-button.css);
-@import url(./__add-button/profile__add-button.css);
 
 
 
@@ -16,4 +14,24 @@
     align-items: center;
     flex-direction: row;
     flex-wrap: wrap;
+}
+
+
+
+
+@media screen and (max-width: 620px) {
+    .profile {
+        max-width: 582px;
+        padding-top: 42px;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 525px) {
+    .profile {
+        max-width: 582px;
+        padding-top: 42px;
+        margin: 0 auto;
+        justify-content: center;
+    }
 }
