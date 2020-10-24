@@ -1,12 +1,11 @@
 .button_type_edit {
     align-self: center;
-    height: 24px;
+    width: 24px;
     color: #FFFFFF;
 }
 
 @media screen and (max-width: 620px) {
     .button_type_edit {
         width: 18px;
-        height: 18px;
     }
 }
