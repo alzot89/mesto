@@ -1,5 +1,7 @@
 .header__logo {
-    color: rgba(255, 255, 255, 1);
+    color: #FFFFFF;
+    margin-bottom: 40px;
+
 }
 
 @media screen and (max-width: 881px) {
@@ -10,6 +12,7 @@
 
 @media screen and (max-width: 620px) {
     .header__logo {
+        margin-bottom: 32px;
         width: 104px;
         height: 25px;
     }

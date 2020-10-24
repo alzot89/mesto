@@ -1,14 +1,15 @@
 .button_type_add {
-    justify-self: end;
-    height: 50px;
+    margin-left: auto;
+    width: 150px;
     border: 2px solid #FFFFFF;
     border-radius: 2px;
 }
 
 
-@media screen and (max-width: 677px) {
+@media screen and (max-width: 620px) {
     .button_type_add {
-        margin-top: 36px;
+        margin: 36px auto 0;
+        width: 100%;
     }
 }
 
@@ -16,6 +17,5 @@
 @media screen and (max-width: 320px) {
     .button_type_add {
         margin-top: 36px;
-        width: 100%;
     }
 }

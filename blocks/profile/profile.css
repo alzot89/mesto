@@ -22,15 +22,7 @@
 
 @media screen and (max-width: 620px) {
     .profile {
-        max-width: 582px;
-        padding-top: 42px;
-        margin: 0 auto;
-    }
-}
-
-@media screen and (max-width: 525px) {
-    .profile {
-        max-width: 582px;
+        max-width: 282px;
         padding-top: 42px;
         margin: 0 auto;
         justify-content: center;
