@@ -4,6 +4,9 @@
     height: 50px;
     border: 2px solid #FFFFFF;
     border-radius: 2px;
+    background-image: url(../../../images/profile_add-button.svg);
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 
