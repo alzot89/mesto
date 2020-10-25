@@ -1,7 +1,9 @@
 .button_type_edit {
     align-self: center;
     width: 24px;
+    height: 24px;
     color: #FFFFFF;
+    margin-top: 6px;
 }
 
 @media screen and (max-width: 620px) {

@@ -4,12 +4,13 @@
     padding: 0;
     margin: 30px auto 0;
     border-bottom: 1px solid rgba(0, 0, 0, .2);
-    outline-style: none;
+    outline-color: #2507cf;
     font-size: 14px;
     line-height: 1.21;
     font-weight: 400;
     color: #000000;
     padding-bottom: 13px;
+    padding-top: 10px;
     resize: none;
 }
 
