@@ -1,6 +1,4 @@
 @import url(./__logo/header__logo.css);
-@import url(./__line/header__line.css);
-@import url(./__stripe/header__stripe.css);
 
 .header {
     width: 100%;
