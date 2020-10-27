@@ -5,6 +5,7 @@
     line-height: 1.33;
     font-weight: 500;
     margin: 0 17px 0 0;
+    text-overflow: ellipsis;
 }
 
 @media screen and (max-width: 620px) {

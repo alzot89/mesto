@@ -4,7 +4,7 @@
     height: 24px;
     color: #FFFFFF;
     margin-top: 6px;
-    background-image: url(../../../images/profile_edit-button.svg);
+    background-image: url("../../../images/profile_edit-button.svg");
     background-size: cover;
     background-position: center;
 }

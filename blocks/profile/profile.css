@@ -1,11 +1,3 @@
-@import url(./__avatar/profile__avatar.css);
-@import url(./__info/profile__info.css);
-@import url(./__subtitle/profile__subtitle.css);
-@import url(./__title/profile__title.css);
-
-
-
-
 .profile {
     width: 100%;
     display: flex;
