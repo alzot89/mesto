@@ -1,9 +1,9 @@
 .button_type_close {
-    width: 41px;
-    height: 41px;
     position: absolute;
-    top: -35px;
-    right: -35px;
+    width: 56px;
+    height: 56px;
+    top: -50px;
+    right: -50px;
     background-image: url("../../../images/edit-form_close-icon.svg");
     background-size: cover;
     background-position: center;
@@ -12,8 +12,8 @@
 
 @media screen and (max-width: 620px) {
     .button_type_close {
-        width: 35px;
-        height: 35px;
+        width: 36px;
+        height: 36px;
         top: -45px;
         right: 0;
 }
