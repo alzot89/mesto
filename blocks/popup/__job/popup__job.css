@@ -12,3 +12,10 @@
     padding-bottom: 13px;
     padding-top: 10px;
 }
+
+.popup__job::placeholder {
+    font-size: 14px;
+    line-height: 1.21;
+    font-weight: 400;
+    color: #000000;
+}

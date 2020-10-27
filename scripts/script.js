@@ -7,6 +7,13 @@ let editButton = profile.querySelector('.button_type_edit');
 
 function popupOpen() {
     popup.classList.add('popup_opened');
+    let name = popupForm.querySelector('.popup__name');
+    let job = popupForm.querySelector('.popup__job');
+    let title = profile.querySelector('.profile__title');
+    let subtitle = profile.querySelector('.profile__subtitle');
+
+    name.value = title.textContent;
+    job.value = subtitle.textContent;
 }
 
 function popupClose() {
@@ -37,6 +44,8 @@ function formSubmitHandler(evt) {
     popupClose();
 
 }
+
+
 
 popupForm.addEventListener('submit', formSubmitHandler);
 
