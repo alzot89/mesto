@@ -11,3 +11,7 @@
     color: #000000;
     padding-bottom: 9px;
 }
+
+.popup__input:nth-of-type(2n) {
+    margin-top: 30px;
+}
