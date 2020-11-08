@@ -84,6 +84,7 @@ const initialCards = [
 ];
 
 
+
 initialCards.forEach(function (item) {
 
     const cardTemplate = document.querySelector('#card').content;
@@ -95,6 +96,12 @@ initialCards.forEach(function (item) {
     cardElement.querySelector('.card__like').addEventListener('click', function (evt) {
         const eventTarget = evt.target;
         eventTarget.classList.toggle('card__like_active');
+    });
+
+    const deleteButton = cardElement.querySelector('.card__trash');
+    deleteButton.addEventListener('click', function () {
+        const card = deleteButton.closest('.card');
+        card.remove();
     });
 
     elements.append(cardElement);
@@ -114,7 +121,11 @@ secondPopupForm.addEventListener('submit', function (evt) {
         const eventTarget = evt.target;
         eventTarget.classList.toggle('card__like_active');
     });
-
+    const deleteButton = cardElement.querySelector('.card__trash');
+    deleteButton.addEventListener('click', function () {
+        const card = deleteButton.closest('.card');
+        card.remove();
+    });
     elements.prepend(cardElement);
     popupAddType.classList.remove('popup_opened');
 });
