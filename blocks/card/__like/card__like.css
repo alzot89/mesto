@@ -3,19 +3,11 @@
     height: 18px;
     margin-right: 3px;
     margin-top: 6px;
-    border: 0;
-    padding: 0;
     color: #000000;
     background-color: #ffffff;
     background-image: url("../../../images/like.svg");
     background-size: cover;
     background-position: center;
-    outline-style: none;
-    cursor: pointer;
-    transition: opacity .4s;
 }
 
 
-.card__like:hover {
-    opacity: 0.6;
-}

@@ -1,9 +1,9 @@
 let popupEditType = document.querySelector('.popup_type_edit');
 let popupAddType = document.querySelector('.popup_type_add');
 let popupForm = popupEditType.querySelector('.popup__form');
-let closeButton = popupEditType.querySelector('.button_type_close');
+let closeButton = popupEditType.querySelector('.popup__close-button');
 let secondPopupForm = popupAddType.querySelector('.popup__form');
-let secondCloseButton = popupAddType.querySelector('.button_type_close');
+let secondCloseButton = popupAddType.querySelector('.popup__close-button');
 
 let name = popupForm.querySelector('.popup__input_type_name');
 let job = popupForm.querySelector('.popup__input_type_job');

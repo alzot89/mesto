@@ -4,6 +4,8 @@
     height: 50px;
     border: 2px solid #ffffff;
     border-radius: 2px;
+    background-color: #000000;
+    color: #FFFFFF;
     background-image: url("../../../images/profile_add-button.svg");
     background-size: contain;
     background-repeat: no-repeat;
