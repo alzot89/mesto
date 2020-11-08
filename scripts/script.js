@@ -1,9 +1,16 @@
 let popupEditType = document.querySelector('.popup_type_edit');
 let popupAddType = document.querySelector('.popup_type_add');
+let popupImageType = document.querySelector('.popup_type_image');
+
+
 let popupForm = popupEditType.querySelector('.popup__form');
 let closeButton = popupEditType.querySelector('.popup__close-button');
 let secondPopupForm = popupAddType.querySelector('.popup__form');
 let secondCloseButton = popupAddType.querySelector('.popup__close-button');
+
+let popupImage = popupImageType.querySelector('.popup__image');
+let popupImageTitle = popupImageType.querySelector('.popup__image-title');
+let thirdCloseButton = popupImageType.querySelector('.popup__close-button');
 
 let name = popupForm.querySelector('.popup__input_type_name');
 let job = popupForm.querySelector('.popup__input_type_job');
@@ -34,6 +41,10 @@ closeButton.addEventListener('click', function () {
 
 secondCloseButton.addEventListener('click', function () {
     popupAddType.classList.remove('popup_opened');
+});
+
+thirdCloseButton.addEventListener('click', function () {
+    popupImageType.classList.remove('popup_opened');
 });
 
 popupEditType.addEventListener('mousedown', function (evt) {
@@ -93,6 +104,7 @@ initialCards.forEach(function (item) {
     cardElement.querySelector('.card__image').src = item.link;
     cardElement.querySelector('.card__title').textContent = item.name;
     cardElement.querySelector('.card__image').alt = item.alt;
+
     cardElement.querySelector('.card__like').addEventListener('click', function (evt) {
         const eventTarget = evt.target;
         eventTarget.classList.toggle('card__like_active');
@@ -102,6 +114,13 @@ initialCards.forEach(function (item) {
     deleteButton.addEventListener('click', function () {
         const card = deleteButton.closest('.card');
         card.remove();
+    });
+
+    const cardImage = cardElement.querySelector('.card__image');
+    cardImage.addEventListener('click', function (evt) {
+        popupImageType.classList.add('popup_opened');
+        popupImage.src = evt.target.src;
+        popupImageTitle.textContent = item.name;
     });
 
     elements.append(cardElement);
@@ -126,6 +145,13 @@ secondPopupForm.addEventListener('submit', function (evt) {
         const card = deleteButton.closest('.card');
         card.remove();
     });
+
+    cardElement.querySelector('.card__image').addEventListener('click', function (evt) {
+        popupImageType.classList.add('popup_opened');
+        popupImage.src = evt.target.src;
+        popupImageTitle.textContent = image.value;
+    });
+
     elements.prepend(cardElement);
     popupAddType.classList.remove('popup_opened');
 });

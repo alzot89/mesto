@@ -1,5 +1,6 @@
 .popup__container_type_add {
-
+    width: 430px;
+    max-width: 430px;
 }
 
 @media screen and (max-width: 620px) {

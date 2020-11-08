@@ -88,7 +88,7 @@
     </footer>
 
     <div class="popup popup_type_edit">
-        <div class="popup__container">
+        <div class="popup__container popup__container_type_edit">
             <button class="button popup__close-button" type="button" aria-label="кнопка: закрыть"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
             <form class="popup__form" name="form">
@@ -114,11 +114,19 @@
         </div>
     </div>
 
+    <div class="popup popup_type_image">
+        <div class="popup__container popup__container_type_image">
+            <button class="button popup__close-button popup__close-button_type_image" type="button"
+                aria-label="кнопка: закрыть"></button>
+            <img class="popup__image" src=" ">
+            <h3 class="popup__image-title"></h3>
+        </div>
+    </div>
 
     <template id="card">
         <li class="card">
             <button class="button card__trash" type="button" aria-label="корзина"></button>
-            <img class="card__image" src=" " alt=" ">
+            <img class="card__image card__image_active" src=" " alt=" ">
             <div class="card__info">
                 <h3 class="card__title"></h3>
                 <button class="button card__like" type="button" aria-label="сердечко"></button>
