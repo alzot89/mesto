@@ -34,7 +34,8 @@ closeButton.addEventListener('click', function () {
 
 secondCloseButton.addEventListener('click', function () {
     popupAddType.classList.remove('popup_opened');
-})
+});
+
 popupEditType.addEventListener('mousedown', function (evt) {
     if (evt.target.classList.contains('popup')) {
         popupEditType.classList.remove('popup_opened');
@@ -91,6 +92,10 @@ initialCards.forEach(function (item) {
     cardElement.querySelector('.card__image').src = item.link;
     cardElement.querySelector('.card__title').textContent = item.name;
     cardElement.querySelector('.card__image').alt = item.alt;
+    cardElement.querySelector('.card__like').addEventListener('click', function (evt) {
+        const eventTarget = evt.target;
+        eventTarget.classList.toggle('card__like_active');
+    });
 
     elements.append(cardElement);
 
@@ -105,6 +110,10 @@ secondPopupForm.addEventListener('submit', function (evt) {
 
     cardElement.querySelector('.card__image').src = link.value;
     cardElement.querySelector('.card__title').textContent = image.value;
+    cardElement.querySelector('.card__like').addEventListener('click', function (evt) {
+        const eventTarget = evt.target;
+        eventTarget.classList.toggle('card__like_active');
+    });
 
     elements.prepend(cardElement);
     popupAddType.classList.remove('popup_opened');
