@@ -1,0 +1,9 @@
+.popup__container_type_add {
+
+}
+
+@media screen and (max-width: 620px) {
+    .popup__container_type_add {
+        width: 240px;
+        padding: 30px 20px;
+}
