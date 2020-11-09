@@ -1,55 +1,55 @@
-let popupEditType = document.querySelector('.popup_type_edit');
-let popupAddType = document.querySelector('.popup_type_add');
-let popupImageType = document.querySelector('.popup_type_image');
+const popupTypeEdit = document.querySelector('.popup_type_edit');
+const popupTypeAdd = document.querySelector('.popup_type_add');
+const popupTypeImage = document.querySelector('.popup_type_image');
 
 
-let popupForm = popupEditType.querySelector('.popup__form');
-let closeButton = popupEditType.querySelector('.popup__close-button');
-let secondPopupForm = popupAddType.querySelector('.popup__form');
-let secondCloseButton = popupAddType.querySelector('.popup__close-button');
+const popupForm = popupTypeEdit.querySelector('.popup__form');
+const closeButton = popupTypeEdit.querySelector('.popup__close-button');
+const secondPopupForm = popupTypeAdd.querySelector('.popup__form');
+const secondCloseButton = popupTypeAdd.querySelector('.popup__close-button');
 
-let popupImage = popupImageType.querySelector('.popup__image');
-let popupImageTitle = popupImageType.querySelector('.popup__image-title');
-let thirdCloseButton = popupImageType.querySelector('.popup__close-button');
+const popupImage = popupTypeImage.querySelector('.popup__image');
+const popupImageTitle = popupTypeImage.querySelector('.popup__image-title');
+const thirdCloseButton = popupTypeImage.querySelector('.popup__close-button');
 
-let name = popupForm.querySelector('.popup__input_type_name');
-let job = popupForm.querySelector('.popup__input_type_job');
+const name = popupForm.querySelector('.popup__input_type_name');
+const job = popupForm.querySelector('.popup__input_type_job');
 
-let image = secondPopupForm.querySelector('.popup__input_type_image');
-let link = secondPopupForm.querySelector('.popup__input_type_link');
+const image = secondPopupForm.querySelector('.popup__input_type_image');
+const link = secondPopupForm.querySelector('.popup__input_type_link');
 
-let profile = document.querySelector('.profile');
-let editButton = profile.querySelector('.button_type_edit');
-let addButton = profile.querySelector('.button_type_add');
-let title = profile.querySelector('.profile__title');
-let subtitle = profile.querySelector('.profile__subtitle');
-let elements = document.querySelector('.elements__list');
+const profile = document.querySelector('.profile');
+const editButton = profile.querySelector('.button_type_edit');
+const addButton = profile.querySelector('.button_type_add');
+const title = profile.querySelector('.profile__title');
+const subtitle = profile.querySelector('.profile__subtitle');
+const elements = document.querySelector('.elements__list');
 
 editButton.addEventListener('click', function () {
     name.value = title.textContent;
     job.value = subtitle.textContent;
-    popupEditType.classList.add('popup_opened');
+    popupTypeEdit.classList.add('popup_opened');
 });
 
 addButton.addEventListener('click', function () {
-    popupAddType.classList.add('popup_opened');
+    popupTypeAdd.classList.add('popup_opened');
 });
 
 closeButton.addEventListener('click', function () {
-    popupEditType.classList.remove('popup_opened');
+    popupTypeEdit.classList.remove('popup_opened');
 });
 
 secondCloseButton.addEventListener('click', function () {
-    popupAddType.classList.remove('popup_opened');
+    popupTypeAdd.classList.remove('popup_opened');
 });
 
 thirdCloseButton.addEventListener('click', function () {
-    popupImageType.classList.remove('popup_opened');
+    popupTypeImage.classList.remove('popup_opened');
 });
 
-popupEditType.addEventListener('mousedown', function (evt) {
+popupTypeEdit.addEventListener('mousedown', function (evt) {
     if (evt.target.classList.contains('popup')) {
-        popupEditType.classList.remove('popup_opened');
+        popupTypeEdit.classList.remove('popup_opened');
     };
 });
 
@@ -58,7 +58,7 @@ popupForm.addEventListener('submit', function (evt) {
 
     title.textContent = name.value;
     subtitle.textContent = job.value;
-    popupEditType.classList.remove('popup_opened');
+    popupTypeEdit.classList.remove('popup_opened');
 });
 
 const initialCards = [
@@ -118,7 +118,7 @@ initialCards.forEach(function (item) {
 
     const cardImage = cardElement.querySelector('.card__image');
     cardImage.addEventListener('click', function (evt) {
-        popupImageType.classList.add('popup_opened');
+        popupTypeImage.classList.add('popup_opened');
         popupImage.src = evt.target.src;
         popupImageTitle.textContent = item.name;
     });
@@ -147,12 +147,12 @@ secondPopupForm.addEventListener('submit', function (evt) {
     });
 
     cardElement.querySelector('.card__image').addEventListener('click', function (evt) {
-        popupImageType.classList.add('popup_opened');
+        popupTypeImage.classList.add('popup_opened');
         popupImage.src = evt.target.src;
         popupImageTitle.textContent = image.value;
     });
 
     elements.prepend(cardElement);
-    popupAddType.classList.remove('popup_opened');
+    popupTypeAdd.classList.remove('popup_opened');
 });
 
