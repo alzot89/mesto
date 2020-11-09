@@ -89,7 +89,7 @@ const initialCards = [
     },
     {
         name: 'Копенгаген',
-        link: './images/Copenhagen.jpg',
+        link: './images/Copenhagen.JPG',
         alt: 'картинка: Копенгаген'
     }
 ];
