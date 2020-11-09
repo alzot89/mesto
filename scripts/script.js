@@ -4,13 +4,13 @@ const popupTypeImage = document.querySelector('.popup_type_image');
 
 
 const popupForm = popupTypeEdit.querySelector('.popup__form');
-const closeButton = popupTypeEdit.querySelector('.popup__close-button');
+const closeButton = popupTypeEdit.querySelector('.popup__close');
 const secondPopupForm = popupTypeAdd.querySelector('.popup__form');
-const secondCloseButton = popupTypeAdd.querySelector('.popup__close-button');
+const secondCloseButton = popupTypeAdd.querySelector('.popup__close');
 
 const popupImage = popupTypeImage.querySelector('.popup__image');
 const popupImageTitle = popupTypeImage.querySelector('.popup__image-title');
-const thirdCloseButton = popupTypeImage.querySelector('.popup__close-button');
+const thirdCloseButton = popupTypeImage.querySelector('.popup__close');
 
 const name = popupForm.querySelector('.popup__input_type_name');
 const job = popupForm.querySelector('.popup__input_type_job');

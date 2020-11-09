@@ -1,4 +1,4 @@
-.popup__close-button_type_image {
+.popup__close_type_add {
     width: 56px;
     height: 56px;
     top: -50px;
@@ -6,7 +6,7 @@
 }
 
 @media screen and (max-width: 620px) {
-    .popup__close-button_type_image {
+    .popup__close_type_add {
         width: 36px;
         height: 36px;
         top: -35px;
