@@ -15,8 +15,8 @@ const thirdCloseButton = popupTypeImage.querySelector('.popup__close-button');
 const name = popupForm.querySelector('.popup__input_type_name');
 const job = popupForm.querySelector('.popup__input_type_job');
 
-const image = secondPopupForm.querySelector('.popup__input_type_image');
-const link = secondPopupForm.querySelector('.popup__input_type_link');
+const imageName = secondPopupForm.querySelector('.popup__input_type_image');
+const imageLink = secondPopupForm.querySelector('.popup__input_type_link');
 
 const profile = document.querySelector('.profile');
 const editButton = profile.querySelector('.button_type_edit');
@@ -89,7 +89,7 @@ const initialCards = [
     },
     {
         name: 'Копенгаген',
-        link: './images/Copenhagen.JPG',
+        link: './images/Copenhagen.jpg',
         alt: 'картинка: Копенгаген'
     }
 ];
@@ -134,8 +134,9 @@ secondPopupForm.addEventListener('submit', function (evt) {
     const cardTemplate = document.querySelector('#card').content;
     const cardElement = cardTemplate.cloneNode(true);
 
-    cardElement.querySelector('.card__image').src = link.value;
-    cardElement.querySelector('.card__title').textContent = image.value;
+    cardElement.querySelector('.card__image').src = imageLink.value;
+    cardElement.querySelector('.card__title').textContent = imageName.value;
+    cardElement.querySelector('.card__image').alt = `картинка: ${imageName.value}`;
     cardElement.querySelector('.card__like').addEventListener('click', function (evt) {
         const eventTarget = evt.target;
         eventTarget.classList.toggle('card__like_active');
@@ -149,7 +150,7 @@ secondPopupForm.addEventListener('submit', function (evt) {
     cardElement.querySelector('.card__image').addEventListener('click', function (evt) {
         popupTypeImage.classList.add('popup_opened');
         popupImage.src = evt.target.src;
-        popupImageTitle.textContent = image.value;
+        popupImageTitle.textContent = imageName.value;
     });
 
     elements.prepend(cardElement);
