@@ -78,7 +78,7 @@ popupForm.addEventListener('submit', function (evt) {
     evt.preventDefault();
     title.textContent = inputName.value;
     subtitle.textContent = inputJob.value;
-    closeAddPopup();
+    closeEditPopup();
 });
 
 const initialCards = [
