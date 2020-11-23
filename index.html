@@ -30,54 +30,6 @@
 
         <section class="elements">
             <ul class="elements__list">
-                <!--  <li class="card">
-                    <button class="button button_type_trash" type="button" aria-label="корзина"></button>
-                    <img class="card__image" src="./images/Barselona.jpg" alt="картинка: Карачаевск">
-                    <div class="card__info">
-                        <h3 class="card__title">Барселона</h3>
-                        <button class="button button_type_like" type="button" aria-label="сердечко"></button>
-                    </div>
-                </li>
-                <li class="card">
-                    <button class="button button_type_trash" type="button" aria-label="корзина"></button>
-                    <img class="card__image" src="./images/Porto.jpg" alt="картинка: Эльбрус">
-                    <div class="card__info">
-                        <h3 class="card__title">Порту</h3>
-                        <button class="button button_type_like" type="button" aria-label="сердечко"></button>
-                    </div>
-                </li>
-                <li class="card">
-                    <button class="button button_type_trash" type="button" aria-label="корзина"></button>
-                    <img class="card__image" src="./images/Lez-Ark.jpg" alt="картинка: Домбай">
-                    <div class="card__info">
-                        <h3 class="card__title">Lez-Arc Франция</h3>
-                        <button class="button button_type_like" type="button" aria-label="сердечко"></button>
-                    </div>
-                </li>
-                <li class="card">
-                    <button class="button button_type_trash" type="button" aria-label="корзина"></button>
-                    <img class="card__image" src="./images/Shri-Lanka.jpg" alt="картинка: Эльбрус2">
-                    <div class="card__info">
-                        <h3 class="card__title">Шри-Ланка</h3>
-                        <button class="button button_type_like" type="button" aria-label="сердечко"></button>
-                    </div>
-                </li>
-                <li class="card">
-                    <button class="button button_type_trash" type="button" aria-label="корзина"></button>
-                    <img class="card__image" src="./images/Bali.jpg" alt="картинка: Домбай2">
-                    <div class="card__info">
-                        <h3 class="card__title">Бали</h3>
-                        <button class="button button_type_like" type="button" aria-label="сердечко"></button>
-                    </div>
-                </li>
-                <li class="card">
-                    <button class="button button_type_trash" type="button" aria-label="корзина"></button>
-                    <img class="card__image" src="./images/Copenhagen.JPG" alt="картинка: Карачаево-Черкесия">
-                    <div class="card__info">
-                        <h3 class="card__title">Копенгаген</h3>
-                        <button class="button button_type_like" type="button" aria-label="сердечко"></button>
-                    </div>
-                </li> -->
             </ul>
         </section>
 
@@ -91,9 +43,17 @@
         <div class="popup__container popup__container_type_edit">
             <button class="button popup__close" type="button" aria-label="кнопка: закрыть"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
-            <form class="popup__form" name="form">
-                <input class="popup__input popup__input_type_name" type="text" name="name" value=" " placeholder=" ">
-                <input class="popup__input popup__input_type_job" type="text" name="job" value=" " placeholder=" ">
+            <form class="popup__form popup__form_type_edit" name="form">
+                <div class="popup__input-container">
+                    <input id="name-input" class="popup__input popup__input_type_name" type="text" maxlength="40"
+                        minlength="2" name="name" value="" placeholder="Имя" required>
+                    <span id="name-input-error" class="error"></span>
+                </div>
+                <div class="popup__input-container">
+                    <input id="job-input" class="popup__input popup__input_type_job" type="text" maxlength="200"
+                        minlength="2" name="job" value="" placeholder="О Себе" required>
+                    <span id="job-input-error" class="error"></span>
+                </div>
                 <button class="button popup__save" aria-label="кнопка: Сохранить">Сохранить</button>
             </form>
         </div>
@@ -105,10 +65,16 @@
                 aria-label="кнопка: закрыть"></button>
             <h2 class="popup__title">Новое место</h2>
             <form class="popup__form popup__form_type_add" name="form">
-                <input class="popup__input popup__input_type_image" type="text" name="image" value=""
-                    placeholder="Название">
-                <input class="popup__input popup__input_type_link" type="text" name="link" value=""
-                    placeholder="Ссылка на картинку">
+                <div class="popup__input-container">
+                    <input id="image-input" class="popup__input popup__input_type_image" type="text" name="image"
+                        value="" placeholder="Название" minlength="2" maxlength="30" required>
+                    <span id="image-input-error" class="error"></span>
+                </div>
+                <div class="popup__input-container">
+                    <input id="link-input" class="popup__input popup__input_type_link" type="url" name="link" value=""
+                        placeholder="Ссылка на картинку" required>
+                    <span id="link-input-error" class="error"></span>
+                </div>
                 <button class="button popup__save popup__save_type_add" aria-label="кнопка: Создать">Создать</button>
             </form>
         </div>
@@ -134,6 +100,7 @@
         </li>
     </template>
     <script src="./scripts/script.js"></script>
+    <script src="./scripts/validation.js"></script>
 </body>
 
 </html>
