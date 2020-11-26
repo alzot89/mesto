@@ -16,6 +16,7 @@
         max-width: 282px;
         padding-top: 42px;
         margin: 0 auto;
+        flex-direction: column;
         justify-content: center;
     }
 }

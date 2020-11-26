@@ -6,7 +6,7 @@ function showError(form, input, config) {
 
 function hideError(form, input, config) {
     const error = form.querySelector(`#${input.id}-error`);
-    error.textContent = input.validationMessage;
+    error.textContent = " ";
     input.classList.remove(config.inputInvalidClass);
 }
 
@@ -51,7 +51,7 @@ function enableValidation(config) {
             form.reset();
         });
         const saveButton = form.querySelector(config.saveButtonSelector);
-        setButtonState(saveButton, form.checkValidity(), config)
+        setButtonState(saveButton, form.checkValidity(), config);
     });
 };
 
