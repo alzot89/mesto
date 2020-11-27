@@ -64,12 +64,12 @@ function openPopup(popup) {
 };
 
 function closePopup(popup) {
-    const form = popup.querySelector(validationConfig.formSelector);
-    form.reset();
-    removeErrorMessage(popup);
     popup.classList.remove('popup_opened');
     document.removeEventListener('mousedown', closePopupOnOverlay);
     document.removeEventListener('keydown', closePopupByEsc);
+    const form = popup.querySelector(validationConfig.formSelector);
+    form.reset();
+    removeErrorMessage(popup);
 };
 
 editButton.addEventListener('click', function () {
