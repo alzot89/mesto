@@ -43,9 +43,6 @@ function closePopupByEsc(evt) {
     const popup = popupOpened();
     if (evt.key === 'Escape') {
         closePopup(popup);
-        const form = popup.querySelector(validationConfig.formSelector)
-        form.reset();
-        removeErrorMessage(popup);
     };
 };
 
@@ -53,9 +50,6 @@ function closePopupOnOverlay(evt) {
     const popup = popupOpened();
     if (evt.target.classList.contains('popup__close') || evt.target.classList.contains('popup')) {
         closePopup(popup);
-        const form = popup.querySelector(validationConfig.formSelector);
-        form.reset();
-        removeErrorMessage(popup);
     };
 };
 
@@ -70,6 +64,9 @@ function openPopup(popup) {
 };
 
 function closePopup(popup) {
+    const form = popup.querySelector(validationConfig.formSelector);
+    form.reset();
+    removeErrorMessage(popup);
     popup.classList.remove('popup_opened');
     document.removeEventListener('mousedown', closePopupOnOverlay);
     document.removeEventListener('keydown', closePopupByEsc);
