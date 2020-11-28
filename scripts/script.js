@@ -131,7 +131,7 @@ function createCard(item) {
         openPopup(popupTypeImage);
         popupImage.src = evt.target.src;
         popupImageTitle.textContent = item.name;
-        popupImage.alt = `картинка: ${item.alt}`;
+        popupImage.alt = item.alt;
     });
 
     return cardElement;
@@ -145,7 +145,7 @@ function addCard(item) {
 initialCards.forEach(addCard);
 
 formAdd.addEventListener('submit', function () {
-    addCard({ name: imageName.value, link: imageLink.value, alt: imageName.value });
+    addCard({ name: imageName.value, link: imageLink.value, alt: `картинка: ${imageName.value}` });
     closePopup(popupTypeAdd);
 });
 
