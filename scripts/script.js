@@ -22,11 +22,6 @@ const subtitle = profile.querySelector('.profile__subtitle');
 const elements = document.querySelector('.elements__list');
 const cardTemplate = document.querySelector('#template-card').content;
 
-const popupOpened = function () {
-    const popup = document.querySelector('.popup_opened');
-    return popup;
-};
-
 function removeErrorMessage(popup) {
     const errors = popup.querySelectorAll(validationConfig.errorMessage);
     Array.from(errors).forEach((error) => {
@@ -36,31 +31,36 @@ function removeErrorMessage(popup) {
     Array.from(inputs).forEach((input) => {
         input.classList.remove(validationConfig.inputInvalidClass);
     });
+    const form = popup.querySelector(validationConfig.formSelector);
+    form.reset();
 };
+
+const findOpenedPopup = function () {
+    const popup = document.querySelector('.popup_opened');
+    return popup;
+};
+
+/* Да я не сразу понял что вы имелли ввиду в коментариях, но в прошлый раз уже после отравки работы на проверку я осознал что функционал связанный с формами надо выделить для отдельных попапов. В этот раз честно пытался обойтись без функуции findOpenedPopup(), но при условии создания отдельных функций закртия попапов мне пришлось бы их каждый раз передавать в closePopupByEsc(evt) и в closePopupOnOverlay(evt), то есть пропала бы универсальнсть*/
 
 
 function closePopupByEsc(evt) {
-    const popup = popupOpened();
+    const popup = findOpenedPopup();
     if (evt.key === 'Escape') {
         closePopup(popup);
     };
 };
 
 function closePopupOnOverlay(evt) {
-    const popup = popupOpened();
+    const popup = findOpenedPopup();
     if (evt.target.classList.contains('popup__close') || evt.target.classList.contains('popup')) {
         closePopup(popup);
     };
 };
 
-
 function openPopup(popup) {
     popup.classList.add('popup_opened');
     document.addEventListener('mousedown', closePopupOnOverlay);
     document.addEventListener('keydown', closePopupByEsc);
-    const form = popup.querySelector(validationConfig.formSelector);
-    const saveButton = form.querySelector(validationConfig.saveButtonSelector);
-    setButtonState(saveButton, form.checkValidity(), validationConfig);
 };
 
 function closePopup(popup) {
@@ -72,16 +72,29 @@ function closePopup(popup) {
     removeErrorMessage(popup);
 };
 
-editButton.addEventListener('click', function () {
+
+function openEditPopup() {
+    openPopup(popupTypeEdit);
+    removeErrorMessage(popupTypeEdit);
+    const form = popupTypeEdit.querySelector(validationConfig.formSelector);
+    const saveButton = form.querySelector(validationConfig.saveButtonSelector);
+    setButtonState(saveButton, form.checkValidity(), validationConfig);
     inputName.value = title.textContent;
     inputJob.value = subtitle.textContent;
-    openPopup(popupTypeEdit);
-});
+};
 
-addButton.addEventListener('click', function () {
+
+function openAddPopup() {
     openPopup(popupTypeAdd);
-});
+    removeErrorMessage(popupTypeAdd);
+    const form = popupTypeAdd.querySelector(validationConfig.formSelector);
+    const saveButton = form.querySelector(validationConfig.saveButtonSelector);
+    setButtonState(saveButton, form.checkValidity(), validationConfig);
+};
 
+editButton.addEventListener('click', openEditPopup);
+
+addButton.addEventListener('click', openAddPopup)
 
 formEdit.addEventListener('submit', function () {
     title.textContent = inputName.value;
@@ -114,12 +127,11 @@ function createCard(item) {
 
     cardLike.addEventListener('click', likeHandler);
     deleteButton.addEventListener('click', deleteCard);
-    cardImage.addEventListener('click', function (evt) {
-        popupTypeImage.classList.add('popup_opened');
-        document.addEventListener('mousedown', closePopupOnOverlay);
-        document.addEventListener('keydown', closePopupByEsc);
+    cardImage.addEventListener('click', (evt) => {
+        openPopup(popupTypeImage);
         popupImage.src = evt.target.src;
         popupImageTitle.textContent = item.name;
+        popupImage.alt = `картинка: ${item.alt}`;
     });
 
     return cardElement;
