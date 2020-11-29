@@ -40,9 +40,6 @@ const findOpenedPopup = function () {
     return popup;
 };
 
-/* Да я не сразу понял что вы имелли ввиду в коментариях, но в прошлый раз уже после отравки работы на проверку я осознал что функционал связанный с формами надо выделить для отдельных попапов. В этот раз честно пытался обойтись без функуции findOpenedPopup(), но при условии создания отдельных функций закртия попапов мне пришлось бы их каждый раз передавать в closePopupByEsc(evt) и в closePopupOnOverlay(evt), то есть пропала бы универсальнсть*/
-
-
 function closePopupByEsc(evt) {
     const popup = findOpenedPopup();
     if (evt.key === 'Escape') {
@@ -67,11 +64,7 @@ function closePopup(popup) {
     popup.classList.remove('popup_opened');
     document.removeEventListener('mousedown', closePopupOnOverlay);
     document.removeEventListener('keydown', closePopupByEsc);
-    const form = popup.querySelector(validationConfig.formSelector);
-    form.reset();
-    removeErrorMessage(popup);
 };
-
 
 function openEditPopup() {
     openPopup(popupTypeEdit);
@@ -83,7 +76,6 @@ function openEditPopup() {
     inputJob.value = subtitle.textContent;
 };
 
-
 function openAddPopup() {
     openPopup(popupTypeAdd);
     removeErrorMessage(popupTypeAdd);
@@ -93,15 +85,12 @@ function openAddPopup() {
 };
 
 editButton.addEventListener('click', openEditPopup);
-
 addButton.addEventListener('click', openAddPopup)
-
 formEdit.addEventListener('submit', function () {
     title.textContent = inputName.value;
     subtitle.textContent = inputJob.value;
     closePopup(popupTypeEdit);
 });
-
 
 function likeHandler(evt) {
     const eventTarget = evt.target;
@@ -114,26 +103,22 @@ function deleteCard(evt) {
 };
 
 function createCard(item) {
-
     const cardElement = cardTemplate.cloneNode(true);
     const cardImage = cardElement.querySelector('.card__image');
     const cardTitle = cardElement.querySelector('.card__title');
     const cardLike = cardElement.querySelector('.card__like');
     const deleteButton = cardElement.querySelector('.card__trash');
-
     cardImage.src = item.link;
     cardTitle.textContent = item.name;
     cardImage.alt = item.alt;
-
     cardLike.addEventListener('click', likeHandler);
     deleteButton.addEventListener('click', deleteCard);
     cardImage.addEventListener('click', (evt) => {
         openPopup(popupTypeImage);
         popupImage.src = evt.target.src;
-        popupImageTitle.textContent = item.name;
-        popupImage.alt = item.alt;
+        popupImageTitle.textContent = imageName.value;
+        popupImage.alt = imageName.value;
     });
-
     return cardElement;
 };
 
