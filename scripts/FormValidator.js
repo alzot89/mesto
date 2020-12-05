@@ -47,10 +47,6 @@ export class FormValidator {
 
     enableValidation() {
         this._setEventListeners();
-        this._form.addEventListener('submit', (evt) => {
-            evt.preventDefault();
-            this._form.reset();
-        });
         const saveButton = this._form.querySelector(this._config.saveButtonSelector)
         this._setButtonState(this._form.checkValidity(), saveButton);
     }

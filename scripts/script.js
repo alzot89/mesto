@@ -25,77 +25,16 @@ const subtitle = profile.querySelector('.profile__subtitle');
 
 const elements = document.querySelector('.elements__list');
 
+const formsList = document.querySelectorAll('.popup__form');
 
-function removeErrorMessage(popup) {
-    const errors = popup.querySelectorAll(validationConfig.errorMessage);
-    Array.from(errors).forEach((error) => {
-        error.textContent = " ";
-    });
-    const inputs = popup.querySelectorAll(validationConfig.inputSelector);
-    Array.from(inputs).forEach((input) => {
-        input.classList.remove(validationConfig.inputInvalidClass);
-    });
-    const form = popup.querySelector(validationConfig.formSelector);
-    form.reset();
-};
-
-const findOpenedPopup = function () {
-    const popup = document.querySelector('.popup_opened');
-    return popup;
-};
-
-function closePopupByEsc(evt) {
-    const popup = findOpenedPopup();
-    if (evt.key === 'Escape') {
-        closePopup(popup);
-    };
-};
-
-function closePopupOnOverlay(evt) {
-    const popup = findOpenedPopup();
-    if (evt.target.classList.contains('popup__close') || evt.target.classList.contains('popup')) {
-        closePopup(popup);
-    };
-};
-
-function openPopup(popup) {
-    popup.classList.add('popup_opened');
-    document.addEventListener('mousedown', closePopupOnOverlay);
-    document.addEventListener('keydown', closePopupByEsc);
-};
-
-function closePopup(popup) {
-    popup.classList.remove('popup_opened');
-    document.removeEventListener('mousedown', closePopupOnOverlay);
-    document.removeEventListener('keydown', closePopupByEsc);
-};
-
-function openEditPopup() {
-    openPopup(popupTypeEdit);
-    removeErrorMessage(popupTypeEdit);
-    inputName.value = title.textContent;
-    inputJob.value = subtitle.textContent;
-    const form = popupTypeEdit.querySelector(validationConfig.formSelector);
-    const validateForm = new FormValidator(validationConfig, form);
-    validateForm.enableValidation();
-
-};
-
-function openAddPopup() {
-    openPopup(popupTypeAdd);
-    removeErrorMessage(popupTypeAdd);
-    const form = popupTypeAdd.querySelector(validationConfig.formSelector);
-    const validateForm = new FormValidator(validationConfig, form);
-    validateForm.enableValidation();
-};
-
-editButton.addEventListener('click', openEditPopup);
-addButton.addEventListener('click', openAddPopup)
-formEdit.addEventListener('submit', () => {
-    title.textContent = inputName.value;
-    subtitle.textContent = inputJob.value;
-    closePopup(popupTypeEdit);
-});
+const validationConfig = {
+    formSelector: '.popup__form',
+    saveButtonSelector: '.popup__save',
+    inputSelector: '.popup__input',
+    inputInvalidClass: 'popup__input_state_invalid',
+    saveButtonInvalidClass: 'popup__save_invalid',
+    errorMessage: '.error'
+}
 
 const initialCards = [
     {
@@ -130,37 +69,104 @@ const initialCards = [
     }
 ];
 
-function popupTypeImageHandler(evt) {
+const findOpenedPopup = function () {
+    const popup = document.querySelector('.popup_opened');
+    return popup;
+};
+
+function removeErrorMessage(popup) {
+    const errors = popup.querySelectorAll(validationConfig.errorMessage);
+    Array.from(errors).forEach((error) => {
+        error.textContent = " ";
+    });
+    const inputs = popup.querySelectorAll(validationConfig.inputSelector);
+    Array.from(inputs).forEach((input) => {
+        input.classList.remove(validationConfig.inputInvalidClass);
+    });
+    const form = popup.querySelector(validationConfig.formSelector);
+    form.reset();
+};
+
+function closePopupByEsc(evt) {
+    const popup = findOpenedPopup();
+    if (evt.key === 'Escape') {
+        closePopup(popup);
+    };
+};
+
+function closePopupOnOverlay(evt) {
+    const popup = findOpenedPopup();
+    if (evt.target.classList.contains('popup__close') || evt.target.classList.contains('popup')) {
+        closePopup(popup);
+    };
+};
+
+function openPopup(popup) {
+    popup.classList.add('popup_opened');
+    document.addEventListener('mousedown', closePopupOnOverlay);
+    document.addEventListener('keydown', closePopupByEsc);
+};
+
+function closePopup(popup) {
+    popup.classList.remove('popup_opened');
+    document.removeEventListener('mousedown', closePopupOnOverlay);
+    document.removeEventListener('keydown', closePopupByEsc);
+};
+
+function openEditPopup() {
+    openPopup(popupTypeEdit);
+    removeErrorMessage(popupTypeEdit);
+    inputName.value = title.textContent;
+    inputJob.value = subtitle.textContent;
+    const saveButton = popupTypeEdit.querySelector(validationConfig.saveButtonSelector);
+    saveButton.classList.remove(validationConfig.saveButtonInvalidClass);
+};
+
+function openAddPopup() {
+    openPopup(popupTypeAdd);
+    removeErrorMessage(popupTypeAdd);
+    const saveButton = popupTypeAdd.querySelector(validationConfig.saveButtonSelector);
+    saveButton.classList.add(validationConfig.saveButtonInvalidClass);
+};
+
+export function popupTypeImageHandler(evt) {
     openPopup(popupTypeImage);
     popupImage.src = evt.target.src;
     popupImageTitle.textContent = imageName.value;
     popupImage.alt = imageName.value;
-}
+};
+
+function addCard(cardElement) {
+    elements.prepend(cardElement);
+};
+
+editButton.addEventListener('click', openEditPopup);
+addButton.addEventListener('click', openAddPopup)
+formEdit.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    title.textContent = inputName.value;
+    subtitle.textContent = inputJob.value;
+    closePopup(popupTypeEdit);
+});
+formAdd.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    const card = new Card({ name: imageName.value, link: imageLink.value, alt: `картинка: ${imageName.value}` }, '#template-card');
+    const cardElement = card.getCard();
+    addCard(cardElement);
+    formAdd.reset();
+    closePopup(popupTypeAdd);
+});
 
 initialCards.forEach((item) => {
     const card = new Card(item, '#template-card');
     const cardElement = card.getCard();
-    const cardImage = cardElement.querySelector('.card__image');
-    cardImage.addEventListener('click', popupTypeImageHandler);
-    elements.prepend(cardElement);
+    addCard(cardElement);
 });
 
-formAdd.addEventListener('submit', () => {
-    const card = new Card({ name: imageName.value, link: imageLink.value, alt: `картинка: ${imageName.value}` }, '#template-card');
-    const cardElement = card.getCard();
-    const cardImage = cardElement.querySelector('.card__image');
-    cardImage.addEventListener('click', popupTypeImageHandler);
-    elements.prepend(cardElement);
-    closePopup(popupTypeAdd);
+Array.from(formsList).forEach((form) => {
+    const validateForm = new FormValidator(validationConfig, form);
+    validateForm.enableValidation();
 });
 
-const validationConfig = {
-    formSelector: '.popup__form',
-    saveButtonSelector: '.popup__save',
-    inputSelector: '.popup__input',
-    inputInvalidClass: 'popup__input_state_invalid',
-    saveButtonInvalidClass: 'popup__save_invalid',
-    errorMessage: '.error'
-}
 
 

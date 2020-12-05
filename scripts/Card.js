@@ -1,3 +1,4 @@
+import { popupTypeImageHandler } from './script.js';
 export class Card {
     constructor(data, cardSelector) {
         this._name = data.name;
@@ -28,12 +29,14 @@ export class Card {
     _setEventListeners() {
         const cardLike = this._element.querySelector('.card__like');
         const deleteButton = this._element.querySelector('.card__trash');
+        const cardImage = this._element.querySelector('.card__image');
         cardLike.addEventListener('click', (evt) => {
             this._likeHandler(evt);
         });
         deleteButton.addEventListener('click', (evt) => {
             this._deleteCard(evt);
         });
+        cardImage.addEventListener('click', popupTypeImageHandler);
     }
 
     _likeHandler(evt) {
