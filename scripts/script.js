@@ -129,13 +129,6 @@ function openAddPopup() {
     saveButton.classList.add(validationConfig.saveButtonInvalidClass);
 };
 
-export function popupTypeImageHandler(evt) {
-    openPopup(popupTypeImage);
-    popupImage.src = evt.target.src;
-    popupImageTitle.textContent = imageName.value;
-    popupImage.alt = imageName.value;
-};
-
 function addCard(cardElement) {
     elements.prepend(cardElement);
 };
@@ -168,5 +161,5 @@ Array.from(formsList).forEach((form) => {
     validateForm.enableValidation();
 });
 
-
+export { openPopup, popupTypeImage, popupImage, popupImageTitle }
 

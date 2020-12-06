@@ -1,4 +1,4 @@
-import { popupTypeImageHandler } from './script.js';
+import { openPopup, popupTypeImage, popupImage, popupImageTitle } from './script.js';
 export class Card {
     constructor(data, cardSelector) {
         this._name = data.name;
@@ -36,7 +36,9 @@ export class Card {
         deleteButton.addEventListener('click', (evt) => {
             this._deleteCard(evt);
         });
-        cardImage.addEventListener('click', popupTypeImageHandler);
+        cardImage.addEventListener('click', () => {
+            this._popupTypeImageHandler();
+        });
     }
 
     _likeHandler(evt) {
@@ -47,6 +49,13 @@ export class Card {
     _deleteCard(evt) {
         const eventTarget = evt.target;
         eventTarget.closest('.card').remove();
+    }
+
+    _popupTypeImageHandler() {
+        openPopup(popupTypeImage);
+        popupImage.src = this._link;
+        popupImageTitle.textContent = this._name;
+        popupImage.alt = this._alt;
     }
 }
 
