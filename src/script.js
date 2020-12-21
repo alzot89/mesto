@@ -1,3 +1,11 @@
+import './index.css';
+import Barselona from '../images/Barselona.jpg';
+import Porto from '../images/Porto.jpg';
+import LezArc from '../images/Lez-Ark.jpg';
+import ShriLanka from '../images/Shri-Lanka.jpg';
+import Bali from '../images/Bali.jpg';
+import Copenhagen from '../images/Copenhagen.jpg';
+
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
 
@@ -39,32 +47,32 @@ const validationConfig = {
 const initialCards = [
     {
         name: 'Порту',
-        link: './images/Porto.jpg',
+        link: Porto,
         alt: 'картинка: Порту'
     },
     {
         name: 'Lez Arc Франция',
-        link: './images/Lez-Ark.jpg',
+        link: LezArc,
         alt: 'картинка: Lez Arc Франция'
     },
     {
         name: 'Шри-Ланка',
-        link: './images/Shri-Lanka.jpg',
+        link: ShriLanka,
         alt: 'картинка: Шри-Ланка'
     },
     {
         name: 'Бали',
-        link: './images/Bali.jpg',
+        link: Bali,
         alt: 'картинка: Бали'
     },
     {
         name: 'Копенгаген',
-        link: './images/Copenhagen.JPG',
+        link: Copenhagen,
         alt: 'картинка: Копенгаген'
     },
     {
         name: 'Барселона',
-        link: './images/Barselona.jpg',
+        link: Barselona,
         alt: 'картинка: Барселона'
     }
 ];

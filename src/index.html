@@ -4,13 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css">
     <title>Сашка Зотов</title>
 </head>
 
 <body class="page">
     <header class="header">
-        <img class="header__logo" src="./images/header_logo.svg" alt="картинка: логотип">
+        <img class="header__logo" src="<%=require('../images/header_logo.svg')%>" alt="картинка: логотип">
     </header>
 
 
@@ -18,7 +17,8 @@
     <main class="content">
 
         <section class="profile">
-            <img class="profile__avatar" src="./images/Alexander Zotov_.jpg" alt="картинка: Сашка Зотов">
+            <img class="profile__avatar" src="<%=require('../images/Alexander Zotov_.jpg')%>"
+                alt="картинка: Сашка Зотов">
             <div class="profile__info">
                 <div class="profile__container">
                     <h1 class="profile__title">Сашка Зотов</h1>
@@ -101,7 +101,6 @@
             </div>
         </li>
     </template>
-    <script src="./scripts/script.js" type="module"></script>
 </body>
 
 </html>
