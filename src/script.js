@@ -77,6 +77,8 @@ const initialCards = [
     }
 ];
 
+const newCard = { name: imageName.value, link: imageLink.value, alt: `картинка: ${imageName.value}` };
+
 const findOpenedPopup = function () {
     const popup = document.querySelector('.popup_opened');
     return popup;
@@ -151,7 +153,7 @@ formEdit.addEventListener('submit', (evt) => {
 });
 formAdd.addEventListener('submit', (evt) => {
     evt.preventDefault();
-    const card = new Card({ name: imageName.value, link: imageLink.value, alt: `картинка: ${imageName.value}` }, '#template-card');
+    const card = new Card(newCard, '#template-card');
     const cardElement = card.getCard();
     addCard(cardElement);
     formAdd.reset();

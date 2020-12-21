@@ -1,9 +1,9 @@
 import { openPopup, popupTypeImage, popupImage, popupImageTitle } from './script.js';
 export class Card {
-    constructor(data, cardSelector) {
-        this._name = data.name;
-        this._link = data.link;
-        this._alt = data.alt;
+    constructor({ name, link, alt }, cardSelector) {
+        this._name = name;
+        this._link = link;
+        this._alt = alt;
         this._cardSelector = cardSelector;
     }
 
