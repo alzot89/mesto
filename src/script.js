@@ -8,6 +8,7 @@ import Copenhagen from '../images/Copenhagen.jpg';
 
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
+import Section from './Section.js';
 
 const popupTypeEdit = document.querySelector('.popup_type_edit');
 const popupTypeAdd = document.querySelector('.popup_type_add');
@@ -77,7 +78,7 @@ const initialCards = [
     }
 ];
 
-const newCard = { name: imageName.value, link: imageLink.value, alt: `картинка: ${imageName.value}` };
+const newCard = [{ name: imageName.value, link: imageLink.value, alt: `картинка: ${imageName.value}` }];
 
 const findOpenedPopup = function () {
     const popup = document.querySelector('.popup_opened');
@@ -139,10 +140,6 @@ function openAddPopup() {
     saveButton.classList.add(validationConfig.saveButtonInvalidClass);
 };
 
-function addCard(cardElement) {
-    elements.prepend(cardElement);
-};
-
 editButton.addEventListener('click', openEditPopup);
 addButton.addEventListener('click', openAddPopup)
 formEdit.addEventListener('submit', (evt) => {
@@ -153,23 +150,34 @@ formEdit.addEventListener('submit', (evt) => {
 });
 formAdd.addEventListener('submit', (evt) => {
     evt.preventDefault();
-    const card = new Card(newCard, '#template-card');
-    const cardElement = card.getCard();
-    addCard(cardElement);
+    const newCardList = new Section({
+        data: newCard,
+        renderer: (item) => {
+            const card = new Card(item, '#template-card');
+            const cardElement = card.getCard();
+            newCardList.addItem(cardElement);
+        }
+    }, elements);
+    newCardList.renderItems();
     formAdd.reset();
     closePopup(popupTypeAdd);
-});
-
-initialCards.forEach((item) => {
-    const card = new Card(item, '#template-card');
-    const cardElement = card.getCard();
-    addCard(cardElement);
 });
 
 Array.from(formsList).forEach((form) => {
     const validateForm = new FormValidator(validationConfig, form);
     validateForm.enableValidation();
 });
+
+const initialCardList = new Section({
+    data: initialCards,
+    renderer: (item) => {
+        const card = new Card(item, '#template-card');
+        const cardElement = card.getCard();
+        initialCardList.addItem(cardElement);
+    }
+}, elements);
+
+initialCardList.renderItems();
 
 export { openPopup, popupTypeImage, popupImage, popupImageTitle }
 
