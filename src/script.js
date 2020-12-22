@@ -9,6 +9,7 @@ import Copenhagen from '../images/Copenhagen.jpg';
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
 import Section from './Section.js';
+import PopupWithImage from './PopupWithImage.js'
 
 const popupTypeEdit = document.querySelector('.popup_type_edit');
 const popupTypeAdd = document.querySelector('.popup_type_add');
@@ -171,7 +172,13 @@ Array.from(formsList).forEach((form) => {
 const initialCardList = new Section({
     data: initialCards,
     renderer: (item) => {
-        const card = new Card(item, '#template-card');
+        const card = new Card(
+            item,
+            () => {
+                const Jope = new PopupWithImage(item, popupTypeImage);
+                Jope.open();
+            },
+            '#template-card');
         const cardElement = card.getCard();
         initialCardList.addItem(cardElement);
     }
