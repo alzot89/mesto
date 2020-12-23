@@ -3,7 +3,7 @@ export class Card {
         this._name = name;
         this._link = link;
         this._alt = alt;
-        this._handleCardClick = handleCardClick;
+        this.handleCardClick = handleCardClick;
         this._cardSelector = cardSelector;
     }
 
@@ -36,8 +36,8 @@ export class Card {
         deleteButton.addEventListener('click', (evt) => {
             this._deleteCard(evt);
         });
-        cardImage.addEventListener('click', (evt) => {
-            this._handleCardClick(evt);
+        cardImage.addEventListener('click', () => {
+            this.handleCardClick();
         });
     }
 

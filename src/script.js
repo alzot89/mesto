@@ -18,9 +18,6 @@ const popupTypeImage = document.querySelector('.popup_type_image');
 const formEdit = popupTypeEdit.querySelector('.popup__form');
 const formAdd = popupTypeAdd.querySelector('.popup__form');
 
-const popupImage = popupTypeImage.querySelector('.popup__image');
-const popupImageTitle = popupTypeImage.querySelector('.popup__image-title');
-
 const inputName = formEdit.querySelector('.popup__input_type_name');
 const inputJob = formEdit.querySelector('.popup__input_type_job');
 
@@ -154,7 +151,13 @@ formAdd.addEventListener('submit', (evt) => {
     const newCardList = new Section({
         data: newCard,
         renderer: (item) => {
-            const card = new Card(item, '#template-card');
+            const card = new Card(
+                item,
+                () => {
+                    const Jope = new PopupWithImage(item, popupTypeImage);
+                    Jope.open();
+                },
+                '#template-card');
             const cardElement = card.getCard();
             newCardList.addItem(cardElement);
         }
@@ -186,5 +189,4 @@ const initialCardList = new Section({
 
 initialCardList.renderItems();
 
-export { openPopup, popupTypeImage, popupImage, popupImageTitle }
 
