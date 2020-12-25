@@ -1,8 +1,7 @@
 export class Card {
-    constructor({ name, link, alt }, handleCardClick, cardSelector) {
-        this._name = name;
+    constructor({ image, link }, handleCardClick, cardSelector) {
+        this._image = image;
         this._link = link;
-        this._alt = alt;
         this.handleCardClick = handleCardClick;
         this._cardSelector = cardSelector;
     }
@@ -21,8 +20,7 @@ export class Card {
         const cardTitle = this._element.querySelector('.card__title');
         this._setEventListeners();
         cardImage.src = this._link;
-        cardTitle.textContent = this._name;
-        cardImage.alt = this._alt;
+        cardTitle.textContent = this._image;
         return this._element;
     }
 
