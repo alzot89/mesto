@@ -18,4 +18,18 @@ export default class Api {
                 return Promise.reject(`Ошибка: ${res.status} ${res.statusText}`);
             })
     }
+
+    getUserInfo() {
+        return fetch(`${this._address}/${this._groupId}/users/me`, {
+            headers: {
+                authorization: this._token
+            }
+        })
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+                return Promise.reject(`Ошибка: ${res.status} ${res.statusText}`);
+            })
+    }
 }

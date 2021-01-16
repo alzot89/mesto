@@ -26,6 +26,11 @@ api.getCardsData()
         initialCardList.renderItems(data);
     });
 
+api.getUserInfo()
+    .then((data) => {
+        userInfo.setUserInfo(data)
+    });
+
 const userInfo = new UserInfo({ titleSelector: '.profile__title', subtitleSelector: '.profile__subtitle' });
 const imagePreview = new PopupWithImage('.popup_type_image');
 const profilePopup = new PopupWithForm((item) => { userInfo.setUserInfo(item) }, '.popup_type_edit')
