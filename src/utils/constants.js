@@ -11,7 +11,7 @@ const addButton = profile.querySelector('.button_type_add');
 const elements = document.querySelector('.elements__list');
 const popupTypeEdit = document.querySelector('.popup_type_edit');
 const nameInput = popupTypeEdit.querySelector('.popup__input_type_name');
-const jobInput = popupTypeEdit.querySelector('.popup__input_type_job');
+const aboutInput = popupTypeEdit.querySelector('.popup__input_type_about');
 
 const validationConfig = {
     formSelector: '.popup__form',
@@ -49,4 +49,4 @@ const initialCards = [
     }
 ];
 
-export { editButton, addButton, elements, nameInput, jobInput, validationConfig, initialCards };
+export { editButton, addButton, elements, nameInput, aboutInput, validationConfig, initialCards };
