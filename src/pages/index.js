@@ -6,7 +6,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
-import { editButton, addButton, elements, nameInput, jobInput, validationConfig } from '../utils/constants.js';
+import { editButton, addButton, elements, nameInput, aboutInput, validationConfig } from '../utils/constants.js';
 
 const api = new Api({
     address: 'https://mesto.nomoreparties.co/v1',
@@ -33,14 +33,25 @@ api.getUserInfo()
 
 const userInfo = new UserInfo({ titleSelector: '.profile__title', subtitleSelector: '.profile__subtitle' });
 const imagePreview = new PopupWithImage('.popup_type_image');
-const profilePopup = new PopupWithForm((item) => { userInfo.setUserInfo(item) }, '.popup_type_edit')
+const profilePopup = new PopupWithForm((item) => {
+    api.changeUserInfo(item)
+        .then((data) => {
+            userInfo.setUserInfo(data)
+        })
+},
+    '.popup_type_edit'
+);
+
 const addCardPopup = new PopupWithForm(
     (item) => {
-        const cardElement = createCard(item);
-        initialCardList.addItem(cardElement);
+        api.setCardData(item)
+            .then((data) => {
+                const cardElement = createCard(data);
+                initialCardList.addItem(cardElement);
+            })
     },
     '.popup_type_add'
-)
+);
 
 function createCard(item) {
     const card = new Card(
@@ -62,7 +73,7 @@ addButton.addEventListener('click', () => {
 editButton.addEventListener('click', () => {
     const userData = userInfo.getUserInfo();
     nameInput.value = userData.name;
-    jobInput.value = userData.job;
+    aboutInput.value = userData.about;
     profileForm.checkFormValidity();
     profilePopup.open();
 });
