@@ -3,9 +3,28 @@ import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
-import PopupWithForm from '../components/PopupWithForm.js'
+import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
-import { editButton, addButton, elements, nameInput, jobInput, validationConfig, initialCards } from '../utils/constants.js'
+import Api from '../components/Api.js';
+import { editButton, addButton, elements, nameInput, jobInput, validationConfig } from '../utils/constants.js';
+
+const api = new Api({
+    address: 'https://mesto.nomoreparties.co/v1',
+    token: '94f8771a-5db3-4407-bf14-903dd1dba9af',
+    groupId: 'cohort-19'
+});
+
+const initialCardList = new Section({
+    renderer: (item) => {
+        const cardElement = createCard(item);
+        initialCardList.addItem(cardElement);
+    }
+}, elements)
+
+api.getCardsData()
+    .then((data) => {
+        initialCardList.renderItems(data);
+    });
 
 const userInfo = new UserInfo({ titleSelector: '.profile__title', subtitleSelector: '.profile__subtitle' });
 const imagePreview = new PopupWithImage('.popup_type_image');
@@ -42,16 +61,6 @@ editButton.addEventListener('click', () => {
     profileForm.checkFormValidity();
     profilePopup.open();
 });
-
-const initialCardList = new Section({
-    data: initialCards,
-    renderer: (item) => {
-        const cardElement = createCard(item);
-        initialCardList.addItem(cardElement);
-    }
-}, elements)
-
-initialCardList.renderItems();
 
 const profileForm = new FormValidator(validationConfig, '.popup__form_type_edit');
 const addCardForm = new FormValidator(validationConfig, '.popup__form_type_add');
