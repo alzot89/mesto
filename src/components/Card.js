@@ -3,6 +3,7 @@ export class Card {
         this._name = item.name;
         this._link = item.link;
         this._alt = item.name;
+        this._likeAmount = item.likes.length;
         this.handleCardClick = handleCardClick;
         this._cardSelector = cardSelector;
     }
@@ -19,7 +20,9 @@ export class Card {
         this._element = this._createCard();
         this._cardImage = this._element.querySelector('.card__image');
         this._cardTitle = this._element.querySelector('.card__title');
+        this._likeContainer = this._element.querySelector('.card__like-amount');
         this._setEventListeners();
+        this._likeContainer.textContent = this._likeAmount;
         this._cardImage.src = this._link;
         this._cardTitle.textContent = this._name;
         this._cardImage.alt = `картинка: ${this._alt}`;

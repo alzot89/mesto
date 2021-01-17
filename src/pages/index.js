@@ -6,7 +6,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
-import { editButton, addButton, elements, nameInput, aboutInput, validationConfig } from '../utils/constants.js';
+import { editButton, addButton, saveButton, elements, nameInput, aboutInput, validationConfig } from '../utils/constants.js';
 
 const api = new Api({
     address: 'https://mesto.nomoreparties.co/v1',
@@ -34,10 +34,12 @@ api.getUserInfo()
 const userInfo = new UserInfo({ titleSelector: '.profile__title', subtitleSelector: '.profile__subtitle' });
 const imagePreview = new PopupWithImage('.popup_type_image');
 const profilePopup = new PopupWithForm((item) => {
+    saveButton.textContent = 'Сохранение...'
     api.changeUserInfo(item)
         .then((data) => {
             userInfo.setUserInfo(data)
-        })
+        });
+    saveButton.textContent = 'Сохранить'
 },
     '.popup_type_edit'
 );

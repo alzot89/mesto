@@ -12,6 +12,7 @@ const elements = document.querySelector('.elements__list');
 const popupTypeEdit = document.querySelector('.popup_type_edit');
 const nameInput = popupTypeEdit.querySelector('.popup__input_type_name');
 const aboutInput = popupTypeEdit.querySelector('.popup__input_type_about');
+const saveButton = popupTypeEdit.querySelector('.popup__save');
 
 const validationConfig = {
     formSelector: '.popup__form',
@@ -49,4 +50,4 @@ const initialCards = [
     }
 ];
 
-export { editButton, addButton, elements, nameInput, aboutInput, validationConfig, initialCards };
+export { editButton, addButton, saveButton, elements, nameInput, aboutInput, validationConfig, initialCards };
