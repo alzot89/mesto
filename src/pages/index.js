@@ -26,19 +26,26 @@ api.getCardsData()
         initialCardList.renderItems(data);
     });
 
-api.getUserInfo()
+let myId;
+function getMyId(data) {
+    myId = data._id;
+};
+
+api.getUserData()
     .then((data) => {
-        userInfo.setUserInfo(data)
+        userInfo.setUserInfo(data);
+        getMyId(data);
     });
+
 
 const userInfo = new UserInfo({ titleSelector: '.profile__title', subtitleSelector: '.profile__subtitle' });
 const imagePreview = new PopupWithImage('.popup_type_image');
 const profilePopup = new PopupWithForm((item) => {
     saveButton.textContent = 'Сохранение...'
-    api.changeUserInfo(item)
+    api.changeUserData(item)
         .then((data) => {
             userInfo.setUserInfo(data)
-        });
+        })
     saveButton.textContent = 'Сохранить'
 },
     '.popup_type_edit'
@@ -58,8 +65,19 @@ const addCardPopup = new PopupWithForm(
 function createCard(item) {
     const card = new Card(
         item,
+        myId,
         () => {
             imagePreview.open(item);
+        },
+        (evt) => {
+            const deleteConfirmPopup = new PopupWithForm(
+                () => {
+                    api.deleteCard(item._id);
+                    evt.target.closest('.card').remove();
+                },
+                '.popup_type_confirm'
+            );
+            deleteConfirmPopup.open()
         },
         '#template-card');
     const cardElement = card.getCard();

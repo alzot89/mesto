@@ -91,9 +91,19 @@
         </div>
     </div>
 
+    <div class="popup popup_type_confirm">
+        <div class="popup__container popup__container_type_confirm">
+            <button class="button popup__close" type="button" aria-label="кнопка: подтвержение"></button>
+            <h2 class="popup__title">Вы уверены?</h2>
+            <form class="popup__form popup__form_type_confirm" name="form">
+                <button class="button popup__save popup__save_type_confirm" aria-label="кнопка: Создать">Да</button>
+            </form>
+        </div>
+    </div>
+
     <template id="template-card">
         <li class="card">
-            <button class="button card__trash" type="button" aria-label="корзина"></button>
+            <button class="button card__trash card__trash_active" type="button" aria-label="корзина"></button>
             <img class="card__image" src=" " alt=" ">
             <div class="card__info">
                 <h3 class="card__title"></h3>
@@ -101,7 +111,6 @@
                     <button class="button card__like" type="button" aria-label="сердечко"></button>
                     <p class="card__like-amount"></p>
                 </div>
-
             </div>
         </li>
     </template>

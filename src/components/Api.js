@@ -19,7 +19,7 @@ export default class Api {
             })
     }
 
-    getUserInfo() {
+    getUserData() {
         return fetch(`${this._address}/${this._groupId}/users/me`, {
             headers: {
                 authorization: this._token
@@ -33,7 +33,7 @@ export default class Api {
             })
     }
 
-    changeUserInfo(data) {
+    changeUserData(data) {
         return fetch(`${this._address}/${this._groupId}/users/me`, {
             method: 'PATCH',
             headers: {
@@ -71,5 +71,14 @@ export default class Api {
                 }
                 return Promise.reject(`Ошибка: ${res.status} ${res.statusText}`);
             })
+    }
+
+    deleteCard(cardId) {
+        fetch(`${this._address}/${this._groupId}/cards/${cardId}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: this._token
+            }
+        })
     }
 }

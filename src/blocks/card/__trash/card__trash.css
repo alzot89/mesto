@@ -7,4 +7,5 @@
     background-image: url(../../../images/trash_icon.svg);
     background-size: cover;
     background-color: rgba(0, 0, 0, 0);
+    display: none;
 }
