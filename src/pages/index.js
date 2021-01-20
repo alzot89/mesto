@@ -51,14 +51,13 @@ const profilePopup = new PopupWithForm((item) => {
     '.popup_type_edit'
 );
 
-const addCardPopup = new PopupWithForm(
-    (item) => {
-        api.setCardData(item)
-            .then((data) => {
-                const cardElement = createCard(data);
-                initialCardList.addItem(cardElement);
-            })
-    },
+const addCardPopup = new PopupWithForm((item) => {
+    api.setCardData(item)
+        .then((data) => {
+            const cardElement = createCard(data);
+            initialCardList.addItem(cardElement);
+        })
+},
     '.popup_type_add'
 );
 
@@ -78,6 +77,19 @@ function createCard(item) {
                 '.popup_type_confirm'
             );
             deleteConfirmPopup.open()
+        },
+        (evt) => {
+            if (!evt.target.classList.contains('card__like_active')) {
+                api.putLike(item._id)
+                    .then((data) => {
+                        card.changeLikesAmount(data);
+                    });
+            } else {
+                api.deleteLike(item._id)
+                    .then((data) => {
+                        card.changeLikesAmount(data);
+                    })
+            }
         },
         '#template-card');
     const cardElement = card.getCard();

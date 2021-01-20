@@ -81,4 +81,34 @@ export default class Api {
             }
         })
     }
+
+    putLike(cardId) {
+        return fetch(`${this._address}/${this._groupId}/cards/likes/${cardId}`, {
+            method: 'PUT',
+            headers: {
+                authorization: this._token
+            }
+        })
+            .then((res) => {
+                if (res.ok) {
+                    return res.json()
+                }
+                return Promise.reject(`Ошибка: ${res.status} ${res.statusText}`);
+            })
+    }
+
+    deleteLike(cardId) {
+        return fetch(`${this._address}/${this._groupId}/cards/likes/${cardId}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: this._token
+            }
+        })
+            .then((res) => {
+                if (res.ok) {
+                    return res.json()
+                }
+                return Promise.reject(`Ошибка: ${res.status} ${res.statusText}`);
+            })
+    }
 }
