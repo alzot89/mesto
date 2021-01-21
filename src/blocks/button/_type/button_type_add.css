@@ -10,6 +10,11 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    transition: opacity .4s;
+}
+
+.button_type_add:hover {
+    opacity: 0.6;
 }
 
 

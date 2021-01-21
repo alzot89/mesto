@@ -1,0 +1,16 @@
+.button_type_avatar {
+    position: absolute;
+    top: 47px;
+    left: 47px;
+    width: 26px;
+    height: 26px;
+    color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url('../../../images/avatar_editor.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0;
+    z-index: 1;
+    transition: opacity .4s;
+}

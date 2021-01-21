@@ -7,6 +7,11 @@
     background-image: url("../../../images/like.svg");
     background-size: cover;
     background-position: center;
+    transition: opacity .4s;
+}
+
+.card__like:hover {
+    opacity: 0.6;
 }
 
 

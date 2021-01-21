@@ -7,7 +7,7 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import PopupConfirm from '../components/PopupConfirm.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
-import { editButton, addButton, saveButton, createButton, elements, nameInput, aboutInput, validationConfig } from '../utils/constants.js';
+import { editButton, addButton, saveButton, avatarEditor, setAvatarButton, createButton, elements, nameInput, aboutInput, validationConfig } from '../utils/constants.js';
 
 const api = new Api({
     address: 'https://mesto.nomoreparties.co/v1',
@@ -35,19 +35,20 @@ function getMyId(data) {
 api.getUserData()
     .then((data) => {
         userInfo.setUserInfo(data);
+        userInfo.setAvatar(data);
         getMyId(data);
     });
 
-const userInfo = new UserInfo({ titleSelector: '.profile__title', subtitleSelector: '.profile__subtitle' });
+const userInfo = new UserInfo({ titleSelector: '.profile__title', subtitleSelector: '.profile__subtitle', avatarSelector: '.profile__avatar' });
 const imagePreview = new PopupWithImage('.popup_type_image');
 const profilePopup = new PopupWithForm((item) => {
     saveButton.textContent = 'Сохранение...'
     api.changeUserData(item)
         .then((data) => {
-            userInfo.setUserInfo(data)
+            userInfo.setUserInfo(data);
+            saveButton.textContent = 'Сохранить'
+            profilePopup.close();
         });
-    profilePopup.close();
-    saveButton.textContent = 'Сохранить'
 },
     '.popup_type_edit'
 );
@@ -58,9 +59,9 @@ const addCardPopup = new PopupWithForm((item) => {
         .then((data) => {
             const cardElement = createCard(data);
             initialCardList.addItem(cardElement);
+            addCardPopup.close();
+            createButton.textContent = 'Создать'
         });
-    addCardPopup.close();
-    createButton.textContent = 'Создать'
 },
     '.popup_type_add'
 );
@@ -70,6 +71,18 @@ const deleteConfirmPopup = new PopupConfirm((data) => {
     deleteConfirmPopup.close();
 },
     '.popup_type_confirm'
+);
+
+const changeAvatarPopup = new PopupWithForm((item) => {
+    setAvatarButton.textContent = 'Сохранение...';
+    api.changeAvatar(item)
+        .then((data) => {
+            userInfo.setAvatar(data)
+        });
+    changeAvatarPopup.close();
+    setAvatarButton.textContent = 'Сохранить';
+},
+    '.popup_type_avatar'
 );
 
 function createCard(item) {
@@ -87,14 +100,14 @@ function createCard(item) {
                 api.putLike(item._id)
                     .then((data) => {
                         card.changeLikesAmount(data);
+                        evt.target.classList.add('card__like_active')
                     });
-                evt.target.classList.add('card__like_active')
             } else {
                 api.deleteLike(item._id)
                     .then((data) => {
                         card.changeLikesAmount(data);
+                        evt.target.classList.remove('card__like_active')
                     });
-                evt.target.classList.remove('card__like_active')
             }
         },
         '#template-card');
@@ -107,7 +120,6 @@ addButton.addEventListener('click', () => {
     addCardPopup.open();
 });
 
-
 editButton.addEventListener('click', () => {
     const userData = userInfo.getUserInfo();
     nameInput.value = userData.name;
@@ -116,7 +128,14 @@ editButton.addEventListener('click', () => {
     profilePopup.open();
 });
 
+avatarEditor.addEventListener('click', () => {
+    changeAvatarForm.checkFormValidity();
+    changeAvatarPopup.open();
+});
+
 const profileForm = new FormValidator(validationConfig, '.popup__form_type_edit');
 const addCardForm = new FormValidator(validationConfig, '.popup__form_type_add');
+const changeAvatarForm = new FormValidator(validationConfig, '.popup__form_type_avatar')
 profileForm.enableValidation();
 addCardForm.enableValidation();
+changeAvatarForm.enableValidation();

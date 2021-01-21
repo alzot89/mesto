@@ -1,0 +1,10 @@
+.popup__form_type_avatar {
+    height: 120px;
+}
+@media screen and (max-width: 620px) {
+    .popup__form_type_avatar {
+        margin: 25px auto 0;
+        height: 100px;
+}
+
+}
