@@ -93,12 +93,18 @@ export default class Api {
     }
 
     deleteCard(cardId) {
-        fetch(`${this._address}/${this._groupId}/cards/${cardId}`, {
+        return fetch(`${this._address}/${this._groupId}/cards/${cardId}`, {
             method: 'DELETE',
             headers: {
                 authorization: this._token
             }
         })
+            .then((res) => {
+                if (res.ok) {
+                    return res.json()
+                }
+                return Promise.reject(`Ошибка: ${res.status} ${res.statusText}`);
+            })
     }
 
     putLike(cardId) {

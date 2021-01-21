@@ -18,7 +18,9 @@
 
         <section class="profile">
             <div class="profile__image">
-                <button class="button button_type_avatar" type="button" aria-label="кнопка: редактировать"></button>
+                <div class="profile__overlay">
+                    <button class="button button_type_avatar" type="button" aria-label="кнопка: редактировать"></button>
+                </div>
                 <img class="profile__avatar" src=" " alt="картинка: аватарка">
             </div>
             <div class="profile__info">
@@ -98,7 +100,8 @@
             <button class="button popup__close" type="button" aria-label="кнопка: подтвержение"></button>
             <h2 class="popup__title">Вы уверены?</h2>
             <form class="popup__form popup__form_type_confirm" name="form">
-                <button class="button popup__save popup__save_type_confirm" aria-label="кнопка: Создать">Да</button>
+                <button class="button popup__save popup__save_type_confirm"
+                    aria-label="кнопка: подтверждение">Да</button>
             </form>
         </div>
     </div>
@@ -114,7 +117,8 @@
                         value="" placeholder="Ссылка на картинку" required>
                     <span id="avatar-input-error" class="error"></span>
                 </div>
-                <button class="button popup__save popup__save_type_add" aria-label="кнопка: Создать">Сохранить</button>
+                <button class="button popup__save popup__save_type_add"
+                    aria-label="кнопка: Сохранить">Сохранить</button>
             </form>
         </div>
     </div>

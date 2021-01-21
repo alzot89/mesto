@@ -35,11 +35,11 @@ export class Card {
         if (this._ownerId === this._myId) {
             this._deleteButton.classList.add('card__trash_active')
         };
-        this._likesData.forEach(element => {
-            if (element._id === this._myId) {
-                this._cardLike.classList.add('card__like_active')
-            }
-        });
+        if (this._likesData.some((element) => {
+            return element._id === this._myId
+        })) {
+            this._cardLike.classList.add('card__like_active')
+        };
         this._cardImage.src = this._link;
         this._cardTitle.textContent = this._name;
         this._cardImage.alt = `картинка: ${this._alt}`;

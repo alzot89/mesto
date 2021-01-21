@@ -1,9 +1,3 @@
-import Barselona from '../images/Barselona.jpg';
-import Porto from '../images/Porto.jpg';
-import LezArc from '../images/Lez-Ark.jpg';
-import ShriLanka from '../images/Shri-Lanka.jpg';
-import Bali from '../images/Bali.jpg';
-import Copenhagen from '../images/Copenhagen.jpg';
 
 const profile = document.querySelector('.profile');
 const editButton = profile.querySelector('.button_type_edit');
@@ -28,31 +22,4 @@ const validationConfig = {
     errorMessage: '.error'
 }
 
-const initialCards = [
-    {
-        image: 'Порту',
-        link: Porto,
-    },
-    {
-        image: 'Lez Arc Франция',
-        link: LezArc,
-    },
-    {
-        image: 'Шри-Ланка',
-        link: ShriLanka,
-    },
-    {
-        image: 'Бали',
-        link: Bali,
-    },
-    {
-        image: 'Копенгаген',
-        link: Copenhagen,
-    },
-    {
-        image: 'Барселона',
-        link: Barselona,
-    }
-];
-
-export { editButton, addButton, saveButton, avatarEditor, setAvatarButton, createButton, elements, nameInput, aboutInput, validationConfig, initialCards };
+export { editButton, addButton, saveButton, avatarEditor, setAvatarButton, createButton, elements, nameInput, aboutInput, validationConfig };

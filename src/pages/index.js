@@ -15,6 +15,36 @@ const api = new Api({
     groupId: 'cohort-19'
 });
 
+function createCard(item) {
+    const card = new Card(
+        item,
+        myId,
+        () => {
+            imagePreview.open(item);
+        },
+        (evt) => {
+            deleteConfirmPopup.open(item, evt);
+        },
+        (evt) => {
+            if (!evt.target.classList.contains('card__like_active')) {
+                api.putLike(item._id)
+                    .then((data) => {
+                        card.changeLikesAmount(data);
+                        evt.target.classList.add('card__like_active')
+                    });
+            } else {
+                api.deleteLike(item._id)
+                    .then((data) => {
+                        card.changeLikesAmount(data);
+                        evt.target.classList.remove('card__like_active')
+                    });
+            }
+        },
+        '#template-card');
+    const cardElement = card.getCard();
+    return cardElement
+}
+
 const initialCardList = new Section({
     renderer: (item) => {
         const cardElement = createCard(item);
@@ -46,8 +76,8 @@ const profilePopup = new PopupWithForm((item) => {
     api.changeUserData(item)
         .then((data) => {
             userInfo.setUserInfo(data);
-            saveButton.textContent = 'Сохранить'
             profilePopup.close();
+            saveButton.textContent = 'Сохранить'
         });
 },
     '.popup_type_edit'
@@ -77,43 +107,13 @@ const changeAvatarPopup = new PopupWithForm((item) => {
     setAvatarButton.textContent = 'Сохранение...';
     api.changeAvatar(item)
         .then((data) => {
-            userInfo.setAvatar(data)
+            userInfo.setAvatar(data);
+            changeAvatarPopup.close();
+            setAvatarButton.textContent = 'Сохранить';
         });
-    changeAvatarPopup.close();
-    setAvatarButton.textContent = 'Сохранить';
 },
     '.popup_type_avatar'
 );
-
-function createCard(item) {
-    const card = new Card(
-        item,
-        myId,
-        () => {
-            imagePreview.open(item);
-        },
-        (evt) => {
-            deleteConfirmPopup.open(item, evt);
-        },
-        (evt) => {
-            if (!evt.target.classList.contains('card__like_active')) {
-                api.putLike(item._id)
-                    .then((data) => {
-                        card.changeLikesAmount(data);
-                        evt.target.classList.add('card__like_active')
-                    });
-            } else {
-                api.deleteLike(item._id)
-                    .then((data) => {
-                        card.changeLikesAmount(data);
-                        evt.target.classList.remove('card__like_active')
-                    });
-            }
-        },
-        '#template-card');
-    const cardElement = card.getCard();
-    return cardElement
-}
 
 addButton.addEventListener('click', () => {
     addCardForm.checkFormValidity();
