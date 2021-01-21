@@ -7,11 +7,11 @@ export default class PopupConfirm extends Popup {
         this._form = this._popup.querySelector('.popup__form')
     }
 
-    open(data, evt) {
+    open(data, card) {
         super.open();
-        this._form.addEventListener('submit', () => {
-            this._confirmHandler(data);
-            evt.target.closest('.card').remove();
+        this._form.addEventListener('submit', (evt) => {
+            evt.preventDefault();
+            this._confirmHandler(data, card);
         });
     }
 }

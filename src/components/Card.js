@@ -28,7 +28,6 @@ export class Card {
         this._likeContainer = this._element.querySelector('.card__like-amount');
         this._deleteButton = this._element.querySelector('.card__trash');
         this._cardLike = this._element.querySelector('.card__like');
-        this._setEventListeners();
         if (!(this._likeAmount === 0)) {
             this._likeContainer.textContent = this._likeAmount
         };
@@ -43,6 +42,7 @@ export class Card {
         this._cardImage.src = this._link;
         this._cardTitle.textContent = this._name;
         this._cardImage.alt = `картинка: ${this._alt}`;
+        this._setEventListeners();
         return this._element;
     }
 
