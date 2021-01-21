@@ -86,7 +86,8 @@ export default class Api {
         return fetch(`${this._address}/${this._groupId}/cards/likes/${cardId}`, {
             method: 'PUT',
             headers: {
-                authorization: this._token
+                authorization: this._token,
+                'Content-Type': 'application/json'
             }
         })
             .then((res) => {
@@ -101,7 +102,8 @@ export default class Api {
         return fetch(`${this._address}/${this._groupId}/cards/likes/${cardId}`, {
             method: 'DELETE',
             headers: {
-                authorization: this._token
+                authorization: this._token,
+                'Content-Type': 'application/json'
             }
         })
             .then((res) => {

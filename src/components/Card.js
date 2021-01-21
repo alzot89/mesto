@@ -49,7 +49,6 @@ export class Card {
     _setEventListeners() {
         this._cardLike.addEventListener('click', (evt) => {
             this.handleCardLike(evt);
-            evt.target.classList.toggle('card__like_active');
         });
         this._deleteButton.addEventListener('click', (evt) => {
             this.handleCardDelete(evt);

@@ -4,9 +4,10 @@ import { FormValidator } from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import PopupConfirm from '../components/PopupConfirm.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
-import { editButton, addButton, saveButton, elements, nameInput, aboutInput, validationConfig } from '../utils/constants.js';
+import { editButton, addButton, saveButton, createButton, elements, nameInput, aboutInput, validationConfig } from '../utils/constants.js';
 
 const api = new Api({
     address: 'https://mesto.nomoreparties.co/v1',
@@ -37,7 +38,6 @@ api.getUserData()
         getMyId(data);
     });
 
-
 const userInfo = new UserInfo({ titleSelector: '.profile__title', subtitleSelector: '.profile__subtitle' });
 const imagePreview = new PopupWithImage('.popup_type_image');
 const profilePopup = new PopupWithForm((item) => {
@@ -45,20 +45,31 @@ const profilePopup = new PopupWithForm((item) => {
     api.changeUserData(item)
         .then((data) => {
             userInfo.setUserInfo(data)
-        })
+        });
+    profilePopup.close();
     saveButton.textContent = 'Сохранить'
 },
     '.popup_type_edit'
 );
 
 const addCardPopup = new PopupWithForm((item) => {
+    createButton.textContent = 'Создание...'
     api.setCardData(item)
         .then((data) => {
             const cardElement = createCard(data);
             initialCardList.addItem(cardElement);
-        })
+        });
+    addCardPopup.close();
+    createButton.textContent = 'Создать'
 },
     '.popup_type_add'
+);
+
+const deleteConfirmPopup = new PopupConfirm((data) => {
+    api.deleteCard(data._id);
+    deleteConfirmPopup.close();
+},
+    '.popup_type_confirm'
 );
 
 function createCard(item) {
@@ -69,14 +80,7 @@ function createCard(item) {
             imagePreview.open(item);
         },
         (evt) => {
-            const deleteConfirmPopup = new PopupWithForm(
-                () => {
-                    api.deleteCard(item._id);
-                    evt.target.closest('.card').remove();
-                },
-                '.popup_type_confirm'
-            );
-            deleteConfirmPopup.open()
+            deleteConfirmPopup.open(item, evt);
         },
         (evt) => {
             if (!evt.target.classList.contains('card__like_active')) {
@@ -84,11 +88,13 @@ function createCard(item) {
                     .then((data) => {
                         card.changeLikesAmount(data);
                     });
+                evt.target.classList.add('card__like_active')
             } else {
                 api.deleteLike(item._id)
                     .then((data) => {
                         card.changeLikesAmount(data);
-                    })
+                    });
+                evt.target.classList.remove('card__like_active')
             }
         },
         '#template-card');
