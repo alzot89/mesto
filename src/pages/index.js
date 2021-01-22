@@ -26,12 +26,12 @@ function createCard(item) {
             const card = evt.target.closest('.card');
             deleteConfirmPopup.open(item, card);
         },
-        (evt) => {
-            if (!evt.target.classList.contains('card__like_active')) {
+        () => {
+            if (card.checkLikeStatus()) {
                 api.putLike(item._id)
                     .then((data) => {
                         card.changeLikesAmount(data);
-                        evt.target.classList.add('card__like_active')
+                        card.switchLikeStatus()
                     })
                     .catch((err) => {
                         console.log(err)
@@ -40,7 +40,7 @@ function createCard(item) {
                 api.deleteLike(item._id)
                     .then((data) => {
                         card.changeLikesAmount(data);
-                        evt.target.classList.remove('card__like_active')
+                        card.switchLikeStatus();
                     })
                     .catch((err) => {
                         console.log(err)

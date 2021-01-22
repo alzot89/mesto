@@ -66,5 +66,15 @@ export class Card {
         }
     }
 
+    checkLikeStatus() {
+        if (!this._cardLike.classList.contains('card__like_active')) {
+            return true
+        }
+    }
+
+    switchLikeStatus() {
+        this._cardLike.classList.toggle('card__like_active')
+    }
+
 }
 
