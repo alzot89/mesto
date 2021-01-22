@@ -68,7 +68,7 @@ api.getCardsData()
     });
 
 let myId;
-function getMyId(data) {
+function setMyId(data) {
     myId = data._id;
 };
 
@@ -76,7 +76,7 @@ api.getUserData()
     .then((data) => {
         userInfo.setUserInfo(data);
         userInfo.setAvatar(data);
-        getMyId(data);
+        setMyId(data);
     })
     .catch((err) => {
         const title = document.querySelector('.profile__title');
