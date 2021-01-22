@@ -59,28 +59,21 @@ const initialCardList = new Section({
     }
 }, elements)
 
-api.getCardsData()
-    .then((data) => {
-        initialCardList.renderItems(data);
-    })
-    .catch((err) => {
-        elements.innerHTML = `<p style="color: white">Что-то пошло не так ${err}</p>`
-    });
-
 let myId;
 function setMyId(data) {
     myId = data._id;
 };
 
-api.getUserData()
+Promise.all([api.getUserData(), api.getCardsData()])
     .then((data) => {
-        userInfo.setUserInfo(data);
-        userInfo.setAvatar(data);
-        setMyId(data);
+        userInfo.setUserInfo(data[0]);
+        userInfo.setAvatar(data[0]);
+        setMyId(data[0]);
+        initialCardList.renderItems(data[1]);
     })
     .catch((err) => {
-        console.log(err)
-    });
+        elements.innerHTML = `<p style="color: white">Что-то пошло не так ${err}</p>`
+    })
 
 const userInfo = new UserInfo({ titleSelector: '.profile__title', subtitleSelector: '.profile__subtitle', avatarSelector: '.profile__avatar' });
 const imagePreview = new PopupWithImage('.popup_type_image');
