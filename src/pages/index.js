@@ -52,17 +52,6 @@ function createCard(item) {
     return cardElement
 }
 
-const deleteConfirmPopup = new PopupConfirm((data, card) => {
-    api.deleteCard(data._id)
-        .catch((err) => {
-            console.log(err);
-        });
-    card.remove();
-    deleteConfirmPopup.close();
-},
-    '.popup_type_confirm'
-);
-
 const initialCardList = new Section({
     renderer: (item) => {
         const cardElement = createCard(item);
@@ -121,7 +110,7 @@ const addCardPopup = new PopupWithForm((item) => {
     api.setCardData(item)
         .then((data) => {
             const cardElement = createCard(data);
-            initialCardList.addItem(cardElement);
+            initialCardList.addNewItem(cardElement);
             addCardPopup.close();
             createButton.textContent = 'Создать'
         })
@@ -131,8 +120,6 @@ const addCardPopup = new PopupWithForm((item) => {
 },
     '.popup_type_add'
 );
-
-
 
 const changeAvatarPopup = new PopupWithForm((item) => {
     setAvatarButton.textContent = 'Сохранение...';
@@ -147,6 +134,17 @@ const changeAvatarPopup = new PopupWithForm((item) => {
         })
 },
     '.popup_type_avatar'
+);
+
+const deleteConfirmPopup = new PopupConfirm((data, card) => {
+    api.deleteCard(data._id)
+        .catch((err) => {
+            console.log(err);
+        });
+    card.remove();
+    deleteConfirmPopup.close();
+},
+    '.popup_type_confirm'
 );
 
 addButton.addEventListener('click', () => {
