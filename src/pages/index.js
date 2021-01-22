@@ -79,8 +79,7 @@ api.getUserData()
         setMyId(data);
     })
     .catch((err) => {
-        const title = document.querySelector('.profile__title');
-        title.textContent = `${err}`
+        console.log(err)
     });
 
 const userInfo = new UserInfo({ titleSelector: '.profile__title', subtitleSelector: '.profile__subtitle', avatarSelector: '.profile__avatar' });
@@ -91,16 +90,13 @@ const profilePopup = new PopupWithForm((item) => {
         .then((data) => {
             userInfo.setUserInfo(data);
             profilePopup.close();
-            saveButton.textContent = 'Сохранить'
         })
         .catch((err) => {
-            const title = document.querySelector('.profile__title');
-            const subtitle = document.querySelector('.profile__subtitle');
-            subtitle.textContent = ""
-            title.textContent = `${err}`;
-            profilePopup.close();
+            console.log(err)
+        })
+        .finally(() => {
             saveButton.textContent = 'Сохранить'
-        });
+        })
 },
     '.popup_type_edit'
 );
@@ -112,10 +108,12 @@ const addCardPopup = new PopupWithForm((item) => {
             const cardElement = createCard(data);
             initialCardList.addNewItem(cardElement);
             addCardPopup.close();
-            createButton.textContent = 'Создать'
         })
         .catch((err) => {
-            createButton.textContent = `${err}`
+            console.log(err)
+        })
+        .finally(() => {
+            createButton.textContent = 'Создать'
         })
 },
     '.popup_type_add'
@@ -127,10 +125,12 @@ const changeAvatarPopup = new PopupWithForm((item) => {
         .then((data) => {
             userInfo.setAvatar(data);
             changeAvatarPopup.close();
-            setAvatarButton.textContent = 'Сохранить';
         })
         .catch((err) => {
-            setAvatarButton.textContent = `${err}`
+            console.log(err)
+        })
+        .finally(() => {
+            setAvatarButton.textContent = 'Сохранить';
         })
 },
     '.popup_type_avatar'
@@ -138,11 +138,13 @@ const changeAvatarPopup = new PopupWithForm((item) => {
 
 const deleteConfirmPopup = new PopupConfirm((data, card) => {
     api.deleteCard(data._id)
+        .then(() => {
+            card.remove();
+            deleteConfirmPopup.close();
+        })
         .catch((err) => {
             console.log(err);
         });
-    card.remove();
-    deleteConfirmPopup.close();
 },
     '.popup_type_confirm'
 );
