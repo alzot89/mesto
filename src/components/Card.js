@@ -60,16 +60,12 @@ export class Card {
 
     changeLikesAmount(data) {
         if (!(data.likes.length === 0)) {
-            this._likeContainer.textContent = data.likes.length;
-        } else {
-            this._likeContainer.textContent = ""
+            this._likeContainer.textContent = data.likes.length || ' '
         }
     }
 
     checkLikeStatus() {
-        if (!this._cardLike.classList.contains('card__like_active')) {
-            return true
-        }
+        return !this._cardLike.classList.contains('card__like_active')
     }
 
     switchLikeStatus() {
